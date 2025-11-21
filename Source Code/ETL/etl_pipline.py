@@ -6,7 +6,7 @@ import logging
 import uuid
 
 # نستورد السكيمـا لكن مش بنشغلها هنا
-from ETL.schema_setup import setup_schema  
+from schema_setup import setup_schema  
 
 DB_DEFAULT = "ivf_star_schema.db"
 
