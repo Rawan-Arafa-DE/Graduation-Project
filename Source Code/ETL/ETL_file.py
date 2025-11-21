@@ -7,7 +7,7 @@ print("Start")
 
 try:
    
-    csv_path = 'Data/elysium_large_synthetic_ivf_10000 (1).csv'
+    csv_path = r"C:\Users\Hp\OneDrive\Desktop\GradProject(Depi)\Graduation-Project\Data\elysium_large_synthetic_ivf_10000 (1).csv"
     print(f"Downloading from: {csv_path}")
     
     df = pd.read_csv(csv_path)
