@@ -1,0 +1,35 @@
+
+/* ===== Custom Theme Colors ===== */
+:root {
+  --primary-color: #f48acb;
+  --sidebar-bg: #ffffff;
+  --link-hover: #e46fb5;
+}
+
+body {
+  background-color: #f7f7f7;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Sidebar Style */
+.sidebar {
+  height: 100vh;
+  border-right: 1px solid #ddd;
+}
+
+.nav-link {
+  color: #444;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.nav-link:hover {
+  color: var(--link-hover);
+  transition: 0.2s;
+}
+
+/* Page Content Area */
+main {
+  background: #f7f7f7;
+  min-height: 100vh;
+}

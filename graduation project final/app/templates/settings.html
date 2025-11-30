@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Settings | IVF System{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="container-fluid px-4 mt-3">
+
+    <h2 class="page-title">Settings</h2>
+    <p class="page-desc">Configure the system to your preferences.</p>
+
+    <!-- ====== TABS ====== -->
+    <div class="settings-tabs">
+        <button class="tab-btn active" onclick="showTab('account')">Account</button>
+        <button class="tab-btn" onclick="showTab('preferences')">Preferences</button>
+    </div>
+
+    <!-- ====== ACCOUNT TAB ====== -->
+    <div id="account" class="settings-section active">
+        <div class="card p-4">
+            <h5 class="section-title">Profile</h5>
+            <p class="text-muted">Manage your public profile details.</p>
+
+            <div class="profile-box d-flex align-items-center">
+                <img src="{{ url_for('static', filename='img/profile.jpg') }}" class="profile-pic">
+                <div class="ms-3">
+                    <h6 class="mb-0">Dr. Liam Basil</h6>
+                    <p class="text-muted mb-0">liam.basil@example.com</p>
+                </div>
+                <button class="edit-btn ms-auto"><i class="fa-solid fa-pen"></i></button>
+            </div>
+
+            <hr>
+
+            <div class="password-box d-flex align-items-center">
+                <i class="fa-solid fa-key password-icon"></i>
+                <div class="ms-3">
+                    <h6 class="mb-0">Password</h6>
+                    <p class="text-muted mb-0">Update your password securely.</p>
+                </div>
+                <button class="arrow-btn ms-auto"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== PREFERENCES TAB ====== -->
+ <div id="preferences" class="settings-section">
+    <div class="card p-4">
+        <h5 class="section-title">Preferences</h5>
+        <p class="text-muted">Customize system appearance.</p>
+
+        <div class="preference-item d-flex justify-content-between align-items-center">
+            <span>Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+        <div class="preference-item d-flex justify-content-between align-items-center">
+            <span>Email Notifications</span>
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<script src="{{ url_for('static', filename='js/settings.js') }}"></script>
+{% endblock %}

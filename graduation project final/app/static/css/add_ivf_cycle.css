@@ -1,0 +1,84 @@
+:root {
+  --primary-color: #f48acb;     
+  --btn-hover: #e46fb5;
+  --text-dark: #444;
+  --light-bg: #f7f7f7;
+}
+
+.content-wrapper {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 30px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(244, 138, 203, 0.15);
+}
+
+/* Title */
+.content-wrapper h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+/* Section Titles */
+.content-wrapper h4 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-top: 22px;
+  margin-bottom: 12px;
+}
+
+.patient-form label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--text-dark);
+}
+
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 9px 12px;
+  font-size: 14px;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(244, 138, 203, 0.3);
+  outline: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 9px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background-color: var(--btn-hover);
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #555;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 999px;
+}
+
+.btn-secondary:hover {
+  background: #dedede;
+}
+
+.back-btn {
+  background: #fce4f3 !important;
+  color: var(--primary-color);
+  border: none;
+}
+.back-btn:hover {
+  background: #f8d1eb !important;
+}

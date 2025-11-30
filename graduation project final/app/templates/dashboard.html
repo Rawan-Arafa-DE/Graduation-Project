@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | IVF System{% endblock %}
+{% block content %}
+
+<!-- Dashboard CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+<!-- FontAwesome (Icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<div class="container-fluid px-4 mt-3">
+
+    <!-- TITLE -->
+    <h2 class="page-title mb-4">Dashboard Overview</h2>
+
+    <!-- ========== METRICS ========== -->
+    <div class="row g-3 mb-4">
+        {% macro metric_card(title, value, change, icon) %}
+        <div class="col-md-3">
+            <div class="metric-card p-3">
+                <div class="metric-title"><i class="{{ icon }}"></i> {{ title }}</div>
+                <div class="metric-value">{{ value }}</div>
+                <div class="metric-change {{ 'text-success' if '+' in change else 'text-danger' }}">
+                    {{ change }}
+                </div>
+            </div>
+        </div>
+        {% endmacro %}
+
+        {{ metric_card("Total Patients", "1,289", "+12.5%", "fa-solid fa-user-group") }}
+        {{ metric_card("Active IVF Cycles", "184", "-3.2%", "fa-solid fa-heart-pulse") }}
+        {{ metric_card("Upcoming Appointments", "42", "0%", "fa-solid fa-calendar-check") }}
+        {{ metric_card("Success Rate", "68.5%", "+1.8%", "fa-solid fa-chart-line") }}
+    </div>
+
+    <!-- ========== CHARTS ========== -->
+    <div class="row g-4 chart-row">
+        <div class="col-md-7">
+            <div class="chart-card p-3">
+                <h5 class="chart-title mb-3">Monthly Patient Registrations</h5>
+                <canvas id="patientsChart"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-5">
+            <div class="chart-card p-3">
+                <h5 class="chart-title mb-3">IVF Cycle Stages</h5>
+                <canvas id="stagesChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== AGE DISTRIBUTION + QUICK INSIGHTS ========== -->
+    <div class="row g-4 chart-row mt-1">
+        <div class="col-md-6">
+            <div class="chart-card p-3">
+                <h5 class="chart-title mb-3">Patient Age Distribution</h5>
+                <canvas id="ageChart"></canvas>
+            </div>
+        </div>
+
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="text-center">
+                <h4 class="mb-2">Quick Insights</h4>
+                <p class="text-muted">Discover personalized patient trends.</p>
+                <a href="/reports">
+                    <button class="btn insights-btn">View All Analytics</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== RECENT ACTIVITY ========== -->
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="activity-card p-4">
+                <h5>Recent Activity</h5>
+                <ul class="activity-list mt-3">
+                    <li><i class="fa-solid fa-user-plus"></i> New Patient Registered — <span>2 hours ago</span></li>
+                    <li><i class="fa-solid fa-heart-pulse"></i> IVF Cycle Initiated — <span>5 hours ago</span></li>
+                    <li><i class="fa-solid fa-calendar-check"></i> Appointment Scheduled — <span>Yesterday</span></li>
+                    <li><i class="fa-solid fa-file-medical"></i> Report Generated — <span>2 days ago</span></li>
+                    <li><i class="fa-solid fa-gear"></i> System Update — <span>3 days ago</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- DASHBOARD JS -->
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+{% endblock %}

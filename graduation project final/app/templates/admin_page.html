@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Admin | IVF System{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_page.css') }}">
+
+<div class="container-fluid px-4 mt-3">
+
+    <h2 class="page-title">Admin Dashboard</h2>
+    <p class="page-subtitle">
+        Manage users, monitor system logs, and control data backups for the IVF Management System.
+    </p>
+
+    <!-- ===== User Management ===== -->
+    <div class="card admin-card p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-3"><i class="fa-solid fa-users"></i> User Management</h5>
+            <button class="btn add-user-btn"><i class="fa-solid fa-user-plus"></i> Add New User</button>
+        </div>
+
+        <table class="table admin-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="userTable">
+                <tbody>
+    <tr>
+        <td>Dr. Evelyn Reed</td>
+        <td>e.reed@elysium.com</td>
+        <td><span class="role-badge doctor">Doctor</span></td>
+        <td><span class="status-badge active">Active</span></td>
+        <td>
+            <button class="btn btn-sm btn-outline-primary">Edit</button>
+            <button class="btn btn-sm btn-outline-danger">Delete</button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Dr. Anya Sharma</td>
+        <td>a.sharma@elysium.com</td>
+        <td><span class="role-badge admin">Admin</span></td>
+        <td><span class="status-badge active">Active</span></td>
+        <td>
+            <button class="btn btn-sm btn-outline-primary">Edit</button>
+            <button class="btn btn-sm btn-outline-danger">Delete</button>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Sarah Chen</td>
+        <td>s.chen@elysium.com</td>
+        <td><span class="role-badge staff">Staff</span></td>
+        <td><span class="status-badge inactive">Inactive</span></td>
+        <td>
+            <button class="btn btn-sm btn-outline-primary">Edit</button>
+            <button class="btn btn-sm btn-outline-danger">Delete</button>
+        </td>
+    </tr>
+</tbody>
+
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td><span class="badge role-{{ user.role | lower }}">{{ user.role }}</span></td>
+                    <td><span class="badge status-{{ user.status | lower }}">{{ user.status }}</span></td>
+                    <td><button class="btn view-btn">View</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ===== System Logs ===== -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card admin-card p-4">
+                <h5><i class="fa-solid fa-clipboard-list"></i> System Logs</h5>
+                <p class="text-muted small">
+                    System events for monitoring and debugging.
+                </p>
+                <ul class="logs-list">
+                    <li><span class="log-time">2024-07-26 14:30</span> — Admin logged in <span class="log-info">INFO</span></li>
+                    <li><span class="log-time">2024-07-26 13:55</span> — Failed attempt to edit record <span class="log-warning">WARNING</span></li>
+                    <li><span class="log-time">2024-07-26 13:40</span> — Backup completed <span class="log-success">SUCCESS</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card admin-card p-4">
+                <h5><i class="fa-solid fa-database"></i> Data Backups</h5>
+                <p class="text-muted small">Automated daily backups ensure data integrity.</p>
+
+                <p><strong>Last Backup:</strong> July 25, 2024 — 02:00 AM</p>
+                <p><strong>Next Scheduled:</strong> July 27, 2024 — 02:00 AM</p>
+
+                <button class="btn backup-btn mb-2">Initiate Backup</button>
+                <button class="btn backup-history-btn">View Backup History</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/admin_page.js') }}"></script>
+{% endblock %}

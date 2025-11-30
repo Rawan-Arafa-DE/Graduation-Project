@@ -1,0 +1,116 @@
+.page-title {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.page-desc {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+/* Tabs */
+.settings-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    border: none;
+    padding: 10px 20px;
+    background: #f3f3f3;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background: #ff88c2;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Sections */
+.settings-section { display: none; }
+.settings-section.active { display: block; }
+
+.card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Profile */
+.profile-box { display: flex; align-items: center; }
+.profile-pic {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+}
+
+.edit-btn {
+    border: none;
+    background: #eee;
+    border-radius: 50%;
+    padding: 7px 10px;
+    cursor: pointer;
+}
+
+/* Password */
+.password-icon {
+    font-size: 28px;
+    color: #555;
+}
+
+.arrow-btn {
+    border: none;
+    background: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Toggle Switch */
+.switch input { display: none; }
+
+.switch {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  display: inline-block;
+}
+
+.slider {
+  position: absolute;
+  inset: 0;
+  background: #ccc;
+  border-radius: 24px;
+  transition: .3s;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: .3s;
+}
+
+input:checked + .slider { background: #ff88c2; }
+input:checked + .slider:before { transform: translateX(24px); }
+
+.preference-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+}
+
+.preference-item:last-child {
+    border-bottom: none;
+}
+
+.settings-section .card {
+    max-width: 550px;
+}

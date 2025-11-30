@@ -1,0 +1,118 @@
+2025-11-26 03:48:24,950 | INFO | Applied fix:
+
+        UPDATE dim_female
+        SET female_age = (SELECT AVG(female_age) FROM dim_female)
+        WHERE female_age IS NULL;
+        
+
+2025-11-26 03:48:25,168 | INFO | Applied fix:
+
+        DELETE FROM dim_protocol
+        WHERE rowid NOT IN (
+            SELECT MIN(rowid)
+            FROM dim_protocol GROUP BY protocol_id
+        );
+        
+
+2025-11-26 03:48:25,186 | INFO | Applied fix:
+
+        UPDATE fact_transfer
+        SET transfer_time_fk = (
+            SELECT MIN(time_id) FROM dim_time
+        )
+        WHERE transfer_time_fk NOT IN (SELECT time_id FROM dim_time);
+        
+
+2025-11-26 04:07:24,235 | INFO | NumExpr defaulting to 8 threads.
+2025-11-26 04:07:25,533 | INFO | NULL replaced in dim_time
+2025-11-26 04:53:52,692 | INFO | NULL replaced in dim_time
+2025-11-26 04:55:48,416 | INFO | Skipping system table: sqlite_sequence
+2025-11-26 04:55:51,846 | INFO | Skipping system table: sqlite_sequence
+2025-11-26 04:55:51,942 | INFO | No duplicates found in fact_ivf_cycle
+2025-11-26 04:55:51,984 | INFO | No duplicates found in fact_transfer
+2025-11-26 04:55:51,997 | INFO | No duplicates found in fact_transfer_embryo
+2025-11-26 04:55:52,059 | INFO | No duplicates found in dim_female
+2025-11-26 04:55:52,086 | INFO | No duplicates found in dim_male
+2025-11-26 04:55:52,114 | INFO | No duplicates found in dim_protocol
+2025-11-26 04:55:52,116 | INFO | No duplicates found in dim_doctor
+2025-11-26 04:55:52,120 | INFO | No duplicates found in dim_outcome
+2025-11-26 04:55:52,136 | INFO | No duplicates found in dim_embryo
+2025-11-26 04:55:52,148 | INFO | No duplicates found in dim_time
+2025-11-26 04:55:52,149 | WARNING | Fixing invalid FK relations...
+2025-11-26 04:55:52,158 | WARNING | Fixing 1 invalid FK in fact_transfer
+2025-11-26 04:55:52,257 | INFO | All fixes applied successfully
+2025-11-26 05:01:25,275 | INFO | Skipping system table: sqlite_sequence
+2025-11-26 05:01:30,496 | INFO | Skipping system table: sqlite_sequence
+2025-11-26 05:01:30,600 | INFO | No duplicates found in fact_ivf_cycle
+2025-11-26 05:01:30,643 | WARNING | Found 1 duplicates in fact_transfer – Cleaning...
+2025-11-26 05:01:31,140 | INFO | Duplicates removed (1) in fact_transfer
+2025-11-26 05:01:31,156 | INFO | No duplicates found in fact_transfer_embryo
+2025-11-26 05:01:31,181 | INFO | No duplicates found in dim_female
+2025-11-26 05:01:31,205 | INFO | No duplicates found in dim_male
+2025-11-26 05:01:31,230 | INFO | No duplicates found in dim_protocol
+2025-11-26 05:01:31,232 | INFO | No duplicates found in dim_doctor
+2025-11-26 05:01:31,237 | INFO | No duplicates found in dim_outcome
+2025-11-26 05:01:31,254 | INFO | No duplicates found in dim_embryo
+2025-11-26 05:01:31,266 | INFO | No duplicates found in dim_time
+2025-11-26 05:01:31,266 | WARNING | Fixing invalid FK relations...
+2025-11-26 05:01:31,274 | WARNING | Found 1 missing time_id(s) — inserting temporary rows in dim_time
+2025-11-26 05:01:31,275 | ERROR | Error inserting missing time_id None: invalid literal for int() with base 10: 'None'
+2025-11-26 05:01:31,275 | INFO | Missing dim_time values fixed.
+2025-11-26 05:01:31,285 | WARNING | Fixing 1 orphan records in fact_transfer
+2025-11-26 05:01:31,289 | ERROR | FK in fact_transfer ERROR: invalid literal for int() with base 10: 'None'
+2025-11-26 05:01:31,310 | ERROR | FK fix for fact_transfer_embryo ERROR: 'case_id'
+2025-11-26 05:01:31,311 | INFO | All fixes applied successfully
+2025-11-26 05:16:19,757 | INFO | Skipping system table: sqlite_sequence
+2025-11-26 05:16:25,238 | INFO | Skipping system table: sqlite_sequence
+2025-11-26 05:16:25,378 | INFO | No duplicates found in fact_ivf_cycle
+2025-11-26 05:16:25,393 | INFO | No duplicates found in fact_transfer_embryo
+2025-11-26 05:16:25,416 | INFO | No duplicates found in dim_female
+2025-11-26 05:16:25,442 | INFO | No duplicates found in dim_male
+2025-11-26 05:16:25,468 | INFO | No duplicates found in dim_protocol
+2025-11-26 05:16:25,469 | INFO | No duplicates found in dim_doctor
+2025-11-26 05:16:25,474 | INFO | No duplicates found in dim_outcome
+2025-11-26 05:16:25,494 | INFO | No duplicates found in dim_embryo
+2025-11-26 05:16:25,507 | INFO | No duplicates found in dim_time
+2025-11-26 05:16:25,546 | INFO | No duplicates found in fact_transfer
+2025-11-26 05:16:25,548 | WARNING | Fixing invalid FK relations...
+2025-11-26 05:16:25,557 | WARNING | Fixing 1 orphan records in fact_transfer
+2025-11-26 05:16:25,562 | ERROR | FK in fact_transfer ERROR: invalid literal for int() with base 10: 'None'
+2025-11-26 05:16:25,582 | ERROR | FK fix for fact_transfer_embryo ERROR: 'case_id'
+2025-11-26 05:16:25,590 | WARNING | ⚠ Found 1 missing time FK values — fixing...
+2025-11-26 05:18:07,638 | INFO | Skipping system table: sqlite_sequence
+2025-11-26 05:18:11,083 | INFO | Skipping system table: sqlite_sequence
+2025-11-26 05:18:11,187 | INFO | No duplicates found in fact_ivf_cycle
+2025-11-26 05:18:11,201 | INFO | No duplicates found in fact_transfer_embryo
+2025-11-26 05:18:11,225 | INFO | No duplicates found in dim_female
+2025-11-26 05:18:11,250 | INFO | No duplicates found in dim_male
+2025-11-26 05:18:11,275 | INFO | No duplicates found in dim_protocol
+2025-11-26 05:18:11,277 | INFO | No duplicates found in dim_doctor
+2025-11-26 05:18:11,282 | INFO | No duplicates found in dim_outcome
+2025-11-26 05:18:11,300 | INFO | No duplicates found in dim_embryo
+2025-11-26 05:18:11,313 | INFO | No duplicates found in dim_time
+2025-11-26 05:18:11,354 | INFO | No duplicates found in fact_transfer
+2025-11-26 05:18:11,355 | WARNING | Fixing invalid FK relations...
+2025-11-26 05:18:11,365 | WARNING | Fixing 1 orphan records in fact_transfer
+2025-11-26 05:18:11,370 | ERROR | FK in fact_transfer ERROR: invalid literal for int() with base 10: 'None'
+2025-11-26 05:18:11,390 | ERROR | FK fix for fact_transfer_embryo ERROR: 'case_id'
+2025-11-26 05:18:11,397 | WARNING | Found 1 missing time_fk — repairing...
+2025-11-26 05:18:11,407 | ERROR | Time FK Fix Error: invalid literal for int() with base 10: 'None'
+2025-11-26 05:18:11,408 | INFO | All fixes applied successfully
+2025-11-26 05:41:34,216 | INFO | Skipping system table: sqlite_sequence
+2025-11-26 05:41:34,350 | INFO | No duplicates found in fact_ivf_cycle
+2025-11-26 05:41:34,365 | INFO | No duplicates found in fact_transfer_embryo
+2025-11-26 05:41:34,430 | INFO | No duplicates found in dim_female
+2025-11-26 05:41:34,457 | INFO | No duplicates found in dim_male
+2025-11-26 05:41:34,486 | INFO | No duplicates found in dim_protocol
+2025-11-26 05:41:34,488 | INFO | No duplicates found in dim_doctor
+2025-11-26 05:41:34,492 | INFO | No duplicates found in dim_outcome
+2025-11-26 05:41:34,508 | INFO | No duplicates found in dim_embryo
+2025-11-26 05:41:34,521 | INFO | No duplicates found in dim_time
+2025-11-26 05:41:34,559 | INFO | No duplicates found in fact_transfer
+2025-11-26 05:41:34,562 | WARNING | Fixing invalid FK relations...
+2025-11-26 05:41:34,571 | WARNING | Fixing 1 orphan records in fact_transfer
+2025-11-26 05:41:34,576 | ERROR | FK in fact_transfer ERROR: invalid literal for int() with base 10: 'None'
+2025-11-26 05:41:34,597 | ERROR | FK fix for fact_transfer_embryo ERROR: 'case_id'
+2025-11-26 05:41:34,693 | INFO | Fixed 1 invalid time_fk in fact_transfer (set to NULL).
+2025-11-26 05:41:34,804 | INFO | Fixed 1 invalid cycle_start_time_id in fact_ivf_cycle (set to NULL).
+2025-11-26 05:41:34,809 | INFO | All fixes applied successfully

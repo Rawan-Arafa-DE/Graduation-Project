@@ -1,0 +1,116 @@
+/* ===== Custom Theme Colors ===== */
+:root {
+  --primary-color: #f48acb;
+  --btn-hover: #e46fb5;
+  --text-dark: #444;
+  --light-bg: #f7f7f7;
+}
+
+/* ===== Page Wrapper ===== */
+.content-wrapper {
+  max-width: 1150px;
+  margin: 25px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* ===== Page Title ===== */
+.content-wrapper h2 {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 18px;
+}
+
+/* ===== Section Headings ===== */
+.content-wrapper h4 {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+/* ===== Divider ===== */
+.content-wrapper hr {
+  margin: 20px 0;
+  border-top: 1px solid #eee;
+}
+
+/* ===== Label & Input Style ===== */
+.patient-form label {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--text-dark);
+}
+
+.patient-form .form-control {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 10px 11px;
+  font-size: 14px;
+}
+
+.patient-form .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(244, 138, 203, 0.25);
+  outline: none;
+}
+
+/* ===== Buttons ===== */
+.save-btn {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 9px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: var(--btn-hover);
+  transition: 0.2s;
+}
+
+.btn-outline-secondary {
+  border: 1px solid #ddd;
+  color: #555;
+  padding: 9px 22px;
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #f5f5f5;
+}
+
+/* ===== Back Button ===== */
+.back-btn {
+  background: #fce4f3;
+  color: var(--primary-color);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+}
+
+.back-btn:hover {
+  background: #f8d1eb;
+}
+
+/* ===== Fix Bootstrap Spacing ===== */
+.row {
+  margin-bottom: 10px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .content-wrapper {
+    margin: 15px;
+    padding: 18px;
+  }
+}

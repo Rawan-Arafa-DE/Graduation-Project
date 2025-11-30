@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Patients | IVF System{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/patients.css') }}">
+
+<div class="container-fluid px-4">
+    
+    <h2 class="page-title mt-3">Patient Management</h2>
+
+    <!-- Patient Filters -->
+    <div class="filter-card p-3 mb-4">
+        <label class="filter-label">Patient Filters</label>
+        <p class="filter-desc">Filter patients by various criteria.</p>
+
+        <div class="row g-3 mt-2">
+            <div class="col-md-4">
+                <input id="searchInput" type="text" class="form-control"
+                    placeholder="Search by name or ID...">
+            </div>
+
+            <div class="col-md-3">
+                <!-- IMPORTANT: LOWERCASE + DASH -->
+                <select id="statusFilter" class="form-select filter-status">
+                    <option value="">Filter by Status</option>
+                    <option value="active">Active</option>
+                    <option value="pending">Pending</option>
+                    <option value="on-hold">On Hold</option>
+                    <option value="success">Success</option>
+                    <option value="completed">Completed</option>
+                    <option value="new-patient">New Patient</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <a href="{{ url_for('add_patient') }}" class="btn add-patient-btn w-100 btn-success">
+                    + Add New Patient
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patients Table -->
+    <div class="table-card p-4">
+        <h5 class="section-title">All Patients</h5>
+        <p class="text-muted small">Overview of all registered IVF patients.</p>
+
+        <table class="table patients-table mt-3" id="patientTable">
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Last Visit</th>
+                    <th>Next Appointment</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr class="patient-row"
+                    data-status="{{ row.status | lower | replace(' ', '-') }}">
+                    <td>{{ row.patient_id }}</td>
+                    <td>{{ row.name }}</td>
+
+                    <td>
+                        <span class="badge status-{{ row.status | lower | replace(' ', '-') }}">
+                            {{ row.status }}
+                        </span>
+                    </td>
+
+                    <td>{{ row.last_visit }}</td>
+                    <td>{{ row.next_visit }}</td>
+                    <td><a href="{{ url_for('patient_profile', female_id=row.patient_id) }}" class="btn view-btn"> View Profile </a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/patients.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'components/base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+
+  <!-- Page Title -->
+  <h2 class="page-title">Dashboard Overview</h2>
+
+  <!-- KPI Cards -->
+  <div class="row g-4 metrics-row">
+    <div class="col-md-3">
+      <div class="metric-card">
+        <h5>Total Patients</h5>
+        <p class="metric-value" style="color:#4caf50;">1,289</p>
+        <p class="metric-change text-success">+12.5% this month</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="metric-card">
+        <h5>Active IVF Cycles</h5>
+        <p class="metric-value" style="color:#e57373;">184</p>
+        <p class="metric-change text-danger">-3.2% this month</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="metric-card">
+        <h5>Upcoming Appointments</h5>
+        <p class="metric-value">42</p>
+        <p class="metric-change text-muted">0% this month</p>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="metric-card">
+        <h5>Success Rate</h5>
+        <p class="metric-value" style="color:#2e7d32;">68.5%</p>
+        <p class="metric-change text-success">+1.8% this month</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="row g-4 mt-4">
+    <div class="col-md-6">
+      <div class="chart-card">
+        <h5>Monthly Patient Registrations</h5>
+        <canvas id="chart1"></canvas>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="chart-card">
+        <h5>IVF Cycle Stages</h5>
+        <canvas id="chart2"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="recent-activity mt-4">
+    <h5>Recent Activity</h5>
+    <ul class="activity-list">
+      <li><b>2 hours ago</b> — New Patient Registered</li>
+      <li><b>5 hours ago</b> — IVF Cycle Initiated</li>
+      <li><b>Yesterday</b> — Appointment Scheduled</li>
+      <li><b>2 days ago</b> — Report Generated</li>
+      <li><b>3 days ago</b> — System Update</li>
+    </ul>
+  </div>
+
+</div>
+{% endblock %}

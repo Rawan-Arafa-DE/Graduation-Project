@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | IVF Analytics</title>
+
+    <!-- Google Font (similar to the design) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
+
+    <!-- Bootstrap (for nice inputs/buttons) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+    <!-- Our styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="login-body">
+
+  <div class="login-wrapper">
+    <div class="login-card">
+
+      <!-- Logo + app name -->
+      <div class="login-logo">
+        <div class="login-logo-icon">V</div>
+        <div class="login-logo-text">Vially</div>
+      </div>
+
+      <h2 class="login-title">Welcome Back</h2>
+      <p class="login-subtitle">Log in to your account to continue</p>
+
+      <form method="post" action="/login">
+        <div class="mb-3">
+          <label class="form-label login-label">Email Address</label>
+          <input type="email" class="form-control login-input" placeholder="Enter your email address">
+        </div>
+
+        <div class="mb-2">
+          <label class="form-label login-label">Password</label>
+          <input type="password" class="form-control login-input" placeholder="Enter your password">
+        </div>
+
+        <p class="login-error">Invalid credentials</p>
+
+        <button type="submit" class="btn login-btn w-100">
+          Sign In
+        </button>
+      </form>
+
+      <div class="login-links">
+        <a href="#" class="login-link-muted">Forgot Password?</a>
+        <span class="login-link-text">
+          Don’t have an account?
+          <a href="#" class="login-link-accent">Create an Account</a>
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="login-made-with">
+    Made with <span>Visily</span>
+  </div>
+
+</body>
+</html>

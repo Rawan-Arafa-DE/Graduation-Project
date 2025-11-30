@@ -1,0 +1,81 @@
+:root {
+  --pink: #f48acb;
+  --pink-dark: #df5fa9;
+  --light-bg: #f7f7f7;
+  --text: #444;
+}
+
+.profile-container { max-width: 1100px; margin: auto; }
+
+.btn-back {
+  background: var(--pink);
+  color: white;
+  padding: 6px 18px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.action-buttons a,
+.action-buttons button {
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  margin-left: 5px;
+  border: none;
+text-decoration: none;
+}
+.btn-update { background: var(--pink); color:#fff; }
+.btn-lab { background: #f0f0f0; }
+.btn-transfer { background: #ddd; color:#666; }
+
+.info-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.card-box {
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.card-box h5 {
+  margin-bottom: 10px;
+  color: var(--pink);
+}
+
+.cycle-card {
+  background: white;
+  padding: 22px;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+.cycle-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cycle-table th {
+  text-align: left;
+  width: 150px;
+  color: #222;
+}
+.cycle-table td {
+  padding: 6px 0;
+  color: var(--text);
+}
+
+.action-buttons a:hover {
+  background: var(--pink-dark);
+  color: white;
+  transition: 0.2s;
+}

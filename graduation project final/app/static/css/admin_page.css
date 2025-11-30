@@ -1,0 +1,151 @@
+.page-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.page-subtitle {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.admin-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+}
+
+/* TABLE */
+.admin-table th {
+    font-weight: 600;
+}
+
+.admin-table tbody tr:hover {
+    background: #fafafa;
+    transition: 0.2s;
+}
+
+/* BUTTONS */
+.add-user-btn {
+    background: #f48acb;
+    color: white;
+    border-radius: 8px;
+    padding: 6px 12px;
+    transition: 0.3s;
+}
+
+.add-user-btn:hover {
+    background: #ff66b3;
+}
+
+.view-btn {
+    border: 1px solid #f48acb;
+    color: #f48acb;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.view-btn:hover {
+    background: #f48acb;
+    color: white;
+}
+
+/* ROLE BADGE */
+.role-admin { background: #d1e8ff; color: #0066cc; }
+.role-doctor { background: #ffe8e8; color: #cc0000; }
+.role-staff { background: #e6ffe6; color: #009900; }
+
+/* STATUS BADGE */
+.status-active { background: #e8ffe8; color: #009900; }
+.status-inactive { background: #ffe8e8; color: #cc0000; }
+
+/* LOGS */
+.logs-list { list-style: none; padding-left: 0; }
+.logs-list li { padding: 6px 0; }
+
+.log-info { background: #dbeafe; color:#1d4ed8; padding:3px 6px; border-radius:6px; }
+.log-warning { background: #fef3c7; color:#b45309; padding:3px 6px; border-radius:6px; }
+.log-success { background: #d1fae5; color:#059669; padding:3px 6px; border-radius:6px; }
+
+.backup-btn { background:#f48acb; color:white; border:none; border-radius:8px; padding:6px 18px; }
+.backup-history-btn { background:white; border:1px solid #ccc; border-radius:6px; padding:6px 18px; }
+/* ==== BETTER CARD STYLE ==== */
+.admin-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f1f1;
+}
+
+/* ==== USER TABLE HEADER ==== */
+.admin-table thead th {
+    border-bottom: 2px solid #f1f1f1;
+    padding-bottom: 10px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* ==== INNER CONTENT SPACING ==== */
+h5 {
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* ==== BUTTONS UPGRADE ==== */
+.add-user-btn,
+.backup-btn {
+    background: linear-gradient(90deg, #f48acb, #ff7dcc);
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-weight: 600;
+    transition: 0.2s ease-in-out;
+}
+.add-user-btn:hover,
+.backup-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 14px rgba(255, 125, 204, 0.4);
+}
+
+/* ==== BACKUP HISTORY BUTTON ==== */
+.backup-history-btn {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 7px 16px;
+    border-radius: 8px;
+}
+.backup-history-btn:hover {
+    border-color: #f48acb;
+    color: #f48acb;
+}
+
+/* ==== SYSTEM LOGS ==== */
+.logs-list li {
+    margin-bottom: 10px;
+}
+.log-time {
+    font-weight: 500;
+    color: #555;
+}
+.admin-card {
+    margin-bottom: 32px;   /* بدل 24px */
+}
+.role-badge,
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* Roles */
+.role-badge.doctor { background: #ffe0e0; color: #b10000; }
+.role-badge.admin  { background: #e0f0ff; color: #003e7e; }
+.role-badge.staff  { background: #fff7d6; color: #8a6d00; }
+
+/* Status */
+.status-badge.active   { background: #d9ffe2; color: #006b2d; }
+.status-badge.inactive { background: #ffe6d6; color: #a64200; }

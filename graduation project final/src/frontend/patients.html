@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Patient Test Page</h2>
+
+<table class="table">
+  <tr>
+    <th>ID</th><th>Status</th><th>Last Visit</th>
+  </tr>
+  {% for row in data %}
+  <tr>
+    <td>{{ row.patient_id }}</td>
+    <td>{{ row.status }}</td>
+    <td>{{ row.last_visit }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

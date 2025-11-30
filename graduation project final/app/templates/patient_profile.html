@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Patient Profile{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/patient_profile.css') }}">
+
+<div class="container-fluid px-4 profile-container">
+
+    <a href="{{ url_for('patients') }}" class="btn-back">← Back</a>
+
+    <div class="header-flex">
+        <h2>Patient Case: {{ data.basic.case_id }}</h2>
+        <div class="action-buttons">
+            <a href="{{ url_for('add_patient') }}" class="btn-update">Update</a>
+            <a href="{{ url_for('add_ivf_cycle') }}" class="btn-lab">+ Lab Cycle</a>
+            <button class="btn-transfer" disabled>+ Transfer</button>
+        </div>
+    </div>
+
+    <!-- ====== GRID CARDS ====== -->
+    <div class="info-grid-3">
+        <div class="card-box">
+            <h5>Female Info</h5>
+            <p><strong>ID:</strong> {{ data.basic.female_id }}</p>
+            <p><strong>Age:</strong> {{ data.basic.female_age }}</p>
+            <p><strong>BMI:</strong> {{ data.basic.female_bmi }}</p>
+        </div>
+
+        <div class="card-box">
+            <h5>Male Info</h5>
+            <p><strong>ID:</strong> {{ data.basic.male_id }}</p>
+            <p><strong>Age:</strong> {{ data.basic.male_age }}</p>
+            <p><strong>Factor:</strong> {{ data.basic.male_factor }}</p>
+        </div>
+
+        <div class="card-box">
+            <h5>Status</h5>
+            <p><strong>Risk:</strong> {{ data.basic.risk_level }}</p>
+            <p><strong>Response:</strong> {{ data.basic.response_type }}</p>
+        </div>
+    </div>
+
+    <!-- ====== LATEST CYCLE ====== -->
+    {% if data.latest_cycle %}
+    <div class="cycle-card">
+        <h4>Latest IVF Cycle</h4>
+        <table class="table cycle-table">
+            <tr><th>Date</th><td>{{ data.latest_cycle.date }}</td></tr>
+            <tr><th>Retrieved</th><td>{{ data.latest_cycle.retrieved }}</td></tr>
+            <tr><th>Blastocyst D5</th><td>{{ data.latest_cycle.blast_d5 }}</td></tr>
+            <tr><th>Status</th><td>{{ data.latest_cycle.status }}</td></tr>
+        </table>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

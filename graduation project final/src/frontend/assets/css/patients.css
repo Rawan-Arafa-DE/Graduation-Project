@@ -1,0 +1,31 @@
+.patient-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.patient-table th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+.patient-table tr:nth-child(even) {
+  background: #f7f7f7;
+}
+
+.status-tag {
+  padding: 5px 10px;
+  border-radius: 12px;
+  background: #c5e1a5; /* Active */
+}
+
+.view-btn {
+  background: #ec64b0;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}

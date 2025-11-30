@@ -1,0 +1,1609 @@
+2025-11-25 22:53:39,462 | INFO | ===== ETL STARTED =====
+2025-11-25 22:53:39,465 | INFO | ⚠ Database NOT found → Creating fresh Star Schema.
+2025-11-25 22:53:40,270 | INFO | ★ Star Schema CREATED successfully.
+2025-11-25 22:53:40,752 | INFO | Loaded 10000 rows from raw database.
+2025-11-25 22:53:40,752 | INFO | Cleaning started...
+2025-11-25 22:53:40,804 | INFO | Removed 0 duplicate rows.
+2025-11-25 22:53:40,941 | INFO | Cleaning finished successfully.
+2025-11-25 22:53:40,945 | INFO | Applying placeholder medical rules...
+2025-11-25 22:53:40,967 | INFO | Placeholder rules added successfully.
+2025-11-25 22:53:41,402 | INFO | dim_female loaded (10000 rows) with mode=replace.
+2025-11-25 22:53:41,926 | INFO | dim_male loaded (10000 rows) with mode=replace.
+2025-11-25 22:53:41,928 | ERROR | ETL FAILED: "['protocol_id'] not in index"
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\449640936.py", line 178, in run_full_etl
+    load_dim_table(df, conn, "dim_protocol",
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   ["protocol_id", "protocol_type", "stimulation_days",
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "total_fsh_dose", "trigger_type", "recommended_protocol"],
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   write_mode)
+                   ^^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\449640936.py", line 130, in load_dim_table
+    dim = df[cols].drop_duplicates().copy()
+          ~~^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\frame.py", line 4108, in __getitem__
+    indexer = self.columns._get_indexer_strict(key, "columns")[1]
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\indexes\base.py", line 6200, in _get_indexer_strict
+    self._raise_if_missing(keyarr, indexer, axis_name)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\indexes\base.py", line 6252, in _raise_if_missing
+    raise KeyError(f"{not_found} not in index")
+KeyError: "['protocol_id'] not in index"
+2025-11-25 22:53:41,952 | INFO | ===== ETL END =====
+2025-11-25 22:55:23,705 | INFO | ===== ETL STARTED =====
+2025-11-25 22:55:23,707 | INFO | ✓ Existing Schema found → Data will be APPENDED.
+2025-11-25 22:55:23,888 | INFO | Loaded 10000 rows from raw database.
+2025-11-25 22:55:23,888 | INFO | Cleaning started...
+2025-11-25 22:55:23,918 | INFO | Removed 0 duplicate rows.
+2025-11-25 22:55:24,039 | INFO | Cleaning finished successfully.
+2025-11-25 22:55:24,041 | INFO | Applying placeholder medical rules...
+2025-11-25 22:55:24,062 | INFO | Placeholder rules added successfully.
+2025-11-25 22:55:24,213 | INFO | dim_female loaded (10000 rows) with mode=append.
+2025-11-25 22:55:24,316 | INFO | dim_male loaded (10000 rows) with mode=append.
+2025-11-25 22:55:24,339 | ERROR | ETL FAILED: UNIQUE constraint failed: dim_protocol.protocol_id
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\2508966771.py", line 182, in run_full_etl
+    load_dim_table(df, conn, "dim_protocol",
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   ["protocol_id", "protocol_type", "stimulation_days",
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "total_fsh_dose", "trigger_type", "recommended_protocol"],
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   write_mode)
+                   ^^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\2508966771.py", line 135, in load_dim_table
+    dim.to_sql(table_name, conn, if_exists=mode, index=False)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: dim_protocol.protocol_id
+2025-11-25 22:55:24,349 | INFO | ===== ETL END =====
+2025-11-25 23:00:15,023 | INFO | ===== ETL STARTED =====
+2025-11-25 23:00:15,024 | INFO | ✓ Existing Schema found → Data will be APPENDED.
+2025-11-25 23:00:15,640 | INFO | Loaded 10000 rows from raw database.
+2025-11-25 23:00:15,640 | INFO | Cleaning started...
+2025-11-25 23:00:15,668 | INFO | Removed 0 duplicate rows.
+2025-11-25 23:00:15,787 | INFO | Cleaning finished successfully.
+2025-11-25 23:00:15,790 | INFO | Applying placeholder medical rules...
+2025-11-25 23:00:15,809 | INFO | Placeholder rules added successfully.
+2025-11-25 23:00:16,050 | INFO | dim_female loaded (10000 unique rows).
+2025-11-25 23:00:16,165 | INFO | dim_male loaded (10000 unique rows).
+2025-11-25 23:00:16,184 | ERROR | ETL FAILED: UNIQUE constraint failed: dim_protocol.protocol_id
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\4228500763.py", line 196, in run_full_etl
+    load_dim_table(df, conn, "dim_protocol",
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   ["protocol_id", "protocol_type", "stimulation_days",
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "total_fsh_dose", "trigger_type", "recommended_protocol"],
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   write_mode)
+                   ^^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\4228500763.py", line 143, in load_dim_table
+    dim.to_sql(
+    ~~~~~~~~~~^
+        table_name,
+        ^^^^^^^^^^^
+    ...<2 lines>...
+        index=False
+        ^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: dim_protocol.protocol_id
+2025-11-25 23:00:16,186 | INFO | ===== ETL END =====
+2025-11-25 23:05:32,391 | INFO | ===== ETL STARTED =====
+2025-11-25 23:05:32,394 | INFO | ⚠ Database NOT found → Creating fresh Star Schema.
+2025-11-25 23:05:33,359 | INFO | ★ Star Schema CREATED successfully.
+2025-11-25 23:05:33,541 | INFO | Loaded 10000 rows from raw database.
+2025-11-25 23:05:33,541 | INFO | Cleaning started...
+2025-11-25 23:05:33,570 | INFO | Removed 0 duplicate rows.
+2025-11-25 23:05:33,690 | INFO | Cleaning finished successfully.
+2025-11-25 23:05:33,691 | INFO | Applying placeholder medical rules...
+2025-11-25 23:05:33,710 | INFO | Placeholder rules added successfully.
+2025-11-25 23:05:33,848 | INFO | dim_female: inserted 10000 rows (fresh table).
+2025-11-25 23:05:33,982 | INFO | dim_male: inserted 10000 rows (fresh table).
+2025-11-25 23:05:34,005 | ERROR | ETL FAILED: UNIQUE constraint failed: dim_protocol.protocol_id
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1393084662.py", line 227, in run_full_etl
+    load_dim_table(df, conn, "dim_protocol",
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   ["protocol_id", "protocol_type", "stimulation_days",
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "total_fsh_dose", "trigger_type", "recommended_protocol"],
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                   write_mode)
+                   ^^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1393084662.py", line 150, in load_dim_table
+    dim.to_sql(table_name, conn, if_exists="append", index=False)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: dim_protocol.protocol_id
+2025-11-25 23:05:34,008 | INFO | ===== ETL END =====
+2025-11-25 23:08:38,477 | INFO | ===== ETL STARTED =====
+2025-11-25 23:08:38,480 | INFO | ✓ Existing Schema found → Data will be APPENDED.
+2025-11-25 23:08:38,656 | INFO | Loaded 10000 rows from raw database.
+2025-11-25 23:08:38,656 | INFO | Cleaning started...
+2025-11-25 23:08:38,685 | INFO | Removed 0 duplicate rows.
+2025-11-25 23:08:38,805 | INFO | Cleaning finished successfully.
+2025-11-25 23:08:38,807 | INFO | Applying placeholder medical rules...
+2025-11-25 23:08:38,826 | INFO | Placeholder rules added successfully.
+2025-11-25 23:08:38,847 | ERROR | ETL FAILED: UNIQUE constraint failed: dim_protocol.protocol_id
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1578225424.py", line 224, in run_full_etl
+    load_dim_table(df, conn, "dim_protocol",
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+                ["protocol_id", "protocol_type", "stimulation_days",
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "total_fsh_dose", "trigger_type", "recommended_protocol"],
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                key_col="protocol_id")
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1578225424.py", line 152, in load_dim_table
+    dim.to_sql(table_name, conn, if_exists="append", index=False)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: dim_protocol.protocol_id
+2025-11-25 23:08:38,849 | INFO | ===== ETL END =====
+2025-11-25 23:09:24,067 | INFO | ===== ETL STARTED =====
+2025-11-25 23:09:24,070 | INFO | ⚠ Database NOT found → Creating fresh Star Schema.
+2025-11-25 23:09:25,031 | INFO | ★ Star Schema CREATED successfully.
+2025-11-25 23:09:25,242 | INFO | Loaded 10000 rows from raw database.
+2025-11-25 23:09:25,242 | INFO | Cleaning started...
+2025-11-25 23:09:25,270 | INFO | Removed 0 duplicate rows.
+2025-11-25 23:09:25,392 | INFO | Cleaning finished successfully.
+2025-11-25 23:09:25,394 | INFO | Applying placeholder medical rules...
+2025-11-25 23:09:25,413 | INFO | Placeholder rules added successfully.
+2025-11-25 23:09:25,439 | ERROR | ETL FAILED: UNIQUE constraint failed: dim_protocol.protocol_id
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1578225424.py", line 224, in run_full_etl
+    load_dim_table(df, conn, "dim_protocol",
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+                ["protocol_id", "protocol_type", "stimulation_days",
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    "total_fsh_dose", "trigger_type", "recommended_protocol"],
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                key_col="protocol_id")
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1578225424.py", line 152, in load_dim_table
+    dim.to_sql(table_name, conn, if_exists="append", index=False)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: dim_protocol.protocol_id
+2025-11-25 23:09:25,441 | INFO | ===== ETL END =====
+2025-11-25 23:17:52,768 | INFO | ===== ETL STARTED =====
+2025-11-25 23:17:52,771 | INFO | Creating star schema from SQL file...
+2025-11-25 23:17:54,573 | ERROR | ETL FAILED: incomplete input
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\940655949.py", line 330, in run_full_etl
+    run_schema_sql()          # FULL REFRESH للـ warehouse
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\940655949.py", line 50, in run_schema_sql
+    conn.executescript(sql_script)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: incomplete input
+2025-11-25 23:18:25,414 | INFO | ===== ETL STARTED =====
+2025-11-25 23:18:25,417 | INFO | Creating star schema from SQL file...
+2025-11-25 23:18:26,518 | ERROR | ETL FAILED: incomplete input
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\940655949.py", line 330, in run_full_etl
+    run_schema_sql()          # FULL REFRESH للـ warehouse
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\940655949.py", line 50, in run_schema_sql
+    conn.executescript(sql_script)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: incomplete input
+2025-11-25 23:19:57,210 | INFO | ===== ETL STARTED =====
+2025-11-25 23:19:57,283 | INFO | Creating star schema from SQL file...
+2025-11-25 23:19:58,797 | INFO | Star schema created successfully.
+2025-11-25 23:19:59,207 | INFO | Loaded 10000 rows from raw table.
+2025-11-25 23:19:59,207 | INFO | Cleaning started...
+2025-11-25 23:19:59,259 | INFO | Dropped 0 duplicate rows.
+2025-11-25 23:19:59,416 | INFO | Cleaning finished.
+2025-11-25 23:19:59,418 | INFO | Applying placeholder medical rules...
+2025-11-25 23:19:59,530 | INFO | Placeholder rules applied.
+2025-11-25 23:19:59,531 | INFO | Loading dimensions...
+2025-11-25 23:20:00,021 | INFO | dim_female: 10000 rows.
+2025-11-25 23:20:00,443 | INFO | dim_male: 10000 rows.
+2025-11-25 23:20:00,755 | INFO | dim_protocol: 9670 rows.
+2025-11-25 23:20:00,755 | WARNING | Missing doctor columns – dim_doctor skipped.
+2025-11-25 23:20:00,755 | WARNING | Some outcome columns missing – dim_outcome may be incomplete.
+2025-11-25 23:20:00,755 | WARNING | No 'embryo_id' column – dim_embryo not loaded.
+2025-11-25 23:20:01,688 | INFO | dim_time: 3376 rows.
+2025-11-25 23:20:01,690 | INFO | Loading fact_ivf_cycle...
+2025-11-25 23:20:01,690 | ERROR | Missing columns for fact_ivf_cycle: ['doctor_id', 'outcome_id', 'm2_count', 'injected_m2']
+2025-11-25 23:20:01,690 | INFO | Loading fact_transfer...
+2025-11-25 23:20:01,690 | WARNING | Missing columns for fact_transfer: ['doctor_id', 'outcome_id']
+2025-11-25 23:20:01,692 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-25 23:24:30,113 | INFO | ===== ETL STARTED =====
+2025-11-25 23:24:30,115 | INFO | Creating star schema from SQL file...
+2025-11-25 23:24:30,916 | INFO | Star schema created successfully.
+2025-11-25 23:24:31,120 | INFO | Loaded 10000 rows from raw table.
+2025-11-25 23:24:31,120 | INFO | Cleaning started...
+2025-11-25 23:24:31,150 | INFO | Dropped 0 duplicate rows.
+2025-11-25 23:24:31,265 | INFO | Cleaning finished.
+2025-11-25 23:24:31,267 | INFO | Applying placeholder medical rules...
+2025-11-25 23:24:31,287 | INFO | Placeholder rules applied.
+2025-11-25 23:24:31,288 | INFO | Loading dimensions...
+2025-11-25 23:24:31,603 | INFO | dim_female: 10000 rows.
+2025-11-25 23:24:31,928 | INFO | dim_male: 10000 rows.
+2025-11-25 23:24:32,305 | INFO | dim_protocol: 9670 rows.
+2025-11-25 23:24:32,306 | WARNING | Missing doctor columns – dim_doctor skipped.
+2025-11-25 23:24:32,306 | WARNING | Some outcome columns missing – dim_outcome may be incomplete.
+2025-11-25 23:24:32,307 | WARNING | No 'embryo_id' column – dim_embryo not loaded.
+2025-11-25 23:24:32,638 | INFO | dim_time: 3376 rows.
+2025-11-25 23:24:32,640 | INFO | Loading fact_ivf_cycle...
+2025-11-25 23:24:32,640 | ERROR | Missing columns for fact_ivf_cycle: ['doctor_id', 'outcome_id', 'm2_count', 'injected_m2']
+2025-11-25 23:24:32,640 | INFO | Loading fact_transfer...
+2025-11-25 23:24:32,641 | WARNING | Missing columns for fact_transfer: ['doctor_id', 'outcome_id']
+2025-11-25 23:24:32,641 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-25 23:29:03,945 | INFO | ===== ETL STARTED =====
+2025-11-25 23:29:03,956 | INFO | Creating star schema from SQL file...
+2025-11-25 23:29:04,788 | INFO | Star schema created successfully.
+2025-11-25 23:29:05,046 | INFO | Loaded 10000 rows from raw table.
+2025-11-25 23:29:05,046 | INFO | Cleaning started...
+2025-11-25 23:29:05,112 | INFO | Dropped 0 duplicate rows.
+2025-11-25 23:29:05,259 | INFO | Cleaning finished.
+2025-11-25 23:29:05,260 | INFO | Applying placeholder medical rules...
+2025-11-25 23:29:05,280 | INFO | Placeholder rules applied.
+2025-11-25 23:29:05,285 | ERROR | ETL FAILED: 'float' object has no attribute 'fillna'
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\2144717121.py", line 369, in run_full_etl
+    df = generate_missing_clinical_data(df)
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\2144717121.py", line 149, in generate_missing_clinical_data
+    df["m2_count"] = df.get("m2_count", np.nan).fillna(0).astype(int)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'float' object has no attribute 'fillna'
+2025-11-25 23:42:07,673 | INFO | ===== ETL STARTED =====
+2025-11-25 23:42:07,715 | INFO | Creating star schema from SQL file...
+2025-11-25 23:42:09,146 | INFO | Star schema created successfully.
+2025-11-25 23:42:09,741 | INFO | Loaded 10000 rows from raw table.
+2025-11-25 23:42:09,741 | INFO | Cleaning started...
+2025-11-25 23:42:09,835 | INFO | Dropped 0 duplicate rows.
+2025-11-25 23:42:10,011 | INFO | Cleaning finished.
+2025-11-25 23:42:10,014 | INFO | Applying placeholder rules & generating IDs...
+2025-11-25 23:42:10,908 | INFO | Placeholder rules & IDs generated.
+2025-11-25 23:42:10,927 | INFO | Loading dimensions...
+2025-11-25 23:42:11,359 | INFO | dim_female: 10000 rows.
+2025-11-25 23:42:11,890 | INFO | dim_male: 10000 rows.
+2025-11-25 23:42:12,490 | INFO | dim_protocol: 9670 rows.
+2025-11-25 23:42:13,079 | INFO | dim_doctor: 1 rows.
+2025-11-25 23:42:13,612 | INFO | dim_outcome: 41 rows.
+2025-11-25 23:42:14,568 | INFO | dim_embryo: 10000 rows.
+2025-11-25 23:42:14,868 | INFO | dim_time: 3376 rows.
+2025-11-25 23:42:14,883 | INFO | Loading fact_ivf_cycle...
+2025-11-25 23:42:14,897 | ERROR | ETL FAILED: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: time_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\3259854903.py", line 410, in run_full_etl
+    load_fact_ivf_cycle(df, conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\3259854903.py", line 348, in load_fact_ivf_cycle
+    time_df = pd.read_sql("SELECT time_id, full_date FROM dim_time;", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+2025-11-25 23:43:00,516 | INFO | ===== ETL STARTED =====
+2025-11-25 23:43:00,558 | INFO | Creating star schema from SQL file...
+2025-11-25 23:43:01,455 | INFO | Star schema created successfully.
+2025-11-25 23:43:01,735 | INFO | Loaded 10000 rows from raw table.
+2025-11-25 23:43:01,735 | INFO | Cleaning started...
+2025-11-25 23:43:01,774 | INFO | Dropped 0 duplicate rows.
+2025-11-25 23:43:01,902 | INFO | Cleaning finished.
+2025-11-25 23:43:01,904 | INFO | Applying placeholder rules & generating IDs...
+2025-11-25 23:43:01,953 | INFO | Placeholder rules & IDs generated.
+2025-11-25 23:43:01,954 | INFO | Loading dimensions...
+2025-11-25 23:43:02,117 | INFO | dim_female: 10000 rows.
+2025-11-25 23:43:02,273 | INFO | dim_male: 10000 rows.
+2025-11-25 23:43:02,427 | INFO | dim_protocol: 9670 rows.
+2025-11-25 23:43:02,530 | INFO | dim_doctor: 1 rows.
+2025-11-25 23:43:02,646 | INFO | dim_outcome: 41 rows.
+2025-11-25 23:43:02,785 | INFO | dim_embryo: 10000 rows.
+2025-11-25 23:43:03,047 | INFO | dim_time: 3376 rows.
+2025-11-25 23:43:03,048 | INFO | Loading fact_ivf_cycle...
+2025-11-25 23:43:03,049 | ERROR | ETL FAILED: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: time_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\3259854903.py", line 410, in run_full_etl
+    load_fact_ivf_cycle(df, conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\3259854903.py", line 348, in load_fact_ivf_cycle
+    time_df = pd.read_sql("SELECT time_id, full_date FROM dim_time;", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+2025-11-25 23:48:54,159 | INFO | ===== ETL STARTED =====
+2025-11-25 23:48:54,205 | INFO | Creating star schema from SQL file...
+2025-11-25 23:48:55,264 | INFO | Star schema created successfully.
+2025-11-25 23:48:55,773 | INFO | Loaded 10000 rows from raw table.
+2025-11-25 23:48:55,773 | INFO | Cleaning started...
+2025-11-25 23:48:55,806 | INFO | Dropped 0 duplicate rows.
+2025-11-25 23:48:55,926 | INFO | Cleaning finished.
+2025-11-25 23:48:55,927 | INFO | Applying placeholder rules & generating IDs...
+2025-11-25 23:48:55,990 | INFO | Placeholder rules & IDs generated.
+2025-11-25 23:48:55,993 | INFO | Loading dimensions...
+2025-11-25 23:48:56,487 | INFO | dim_female: 10000 rows.
+2025-11-25 23:48:57,021 | INFO | dim_male: 10000 rows.
+2025-11-25 23:48:57,565 | INFO | dim_protocol: 9670 rows.
+2025-11-25 23:48:58,020 | INFO | dim_doctor: 1 rows.
+2025-11-25 23:48:58,375 | INFO | dim_outcome: 41 rows.
+2025-11-25 23:48:58,765 | INFO | dim_embryo: 10000 rows.
+2025-11-25 23:48:59,075 | INFO | dim_time: 3376 rows.
+2025-11-25 23:48:59,076 | INFO | Loading fact_ivf_cycle...
+2025-11-25 23:48:59,076 | ERROR | ETL FAILED: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: time_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1145254062.py", line 410, in run_full_etl
+    load_fact_ivf_cycle(df, conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1145254062.py", line 348, in load_fact_ivf_cycle
+    time_df = pd.read_sql("SELECT time_id, full_date FROM dim_time;", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+2025-11-25 23:58:25,474 | INFO | ===== ETL STARTED =====
+2025-11-25 23:58:25,493 | INFO | Creating star schema from SQL file...
+2025-11-25 23:58:27,998 | INFO | Star schema created successfully.
+2025-11-25 23:58:28,391 | INFO | Loaded 10000 rows from raw table.
+2025-11-25 23:58:28,391 | INFO | Cleaning started...
+2025-11-25 23:58:28,428 | INFO | Dropped 0 duplicate rows.
+2025-11-25 23:58:28,560 | INFO | Cleaning finished.
+2025-11-25 23:58:28,561 | INFO | Applying placeholder rules & generating IDs...
+2025-11-25 23:58:28,610 | INFO | Placeholder rules & IDs generated.
+2025-11-25 23:58:28,612 | INFO | Loading dimensions...
+2025-11-25 23:58:29,054 | INFO | dim_female: 10000 rows.
+2025-11-25 23:58:29,365 | INFO | dim_male: 10000 rows.
+2025-11-25 23:58:29,448 | ERROR | ETL FAILED: UNIQUE constraint failed: dim_protocol.protocol_id
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\454419550.py", line 412, in run_full_etl
+    load_dimensions(df, conn)       # 5) dimensions
+    ~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\454419550.py", line 270, in load_dimensions
+    dim_protocol.to_sql("dim_protocol", conn, if_exists="append", index=False)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: dim_protocol.protocol_id
+2025-11-26 00:06:41,524 | INFO | ===== ETL STARTED =====
+2025-11-26 00:06:41,560 | INFO | Creating star schema from SQL file...
+2025-11-26 00:06:42,519 | INFO | Star schema created successfully.
+2025-11-26 00:06:42,762 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:06:42,762 | INFO | Cleaning started...
+2025-11-26 00:06:42,799 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:06:42,946 | INFO | Cleaning finished.
+2025-11-26 00:06:42,949 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:06:43,012 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:06:43,014 | INFO | Loading dimensions with duplicate handling...
+2025-11-26 00:06:43,133 | ERROR | ETL FAILED: UNIQUE constraint failed: dim_protocol.protocol_id
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\320775688.py", line 423, in run_full_etl
+    load_dimensions(df, conn)       # 5) dimensions
+    ~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\320775688.py", line 290, in load_dimensions
+    safe_insert("dim_protocol", df[[
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        "protocol_id", "protocol_type", "stimulation_days",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "total_fsh_dose", "trigger_type", "recommended_protocol"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ]].drop_duplicates(), key_col="protocol_id")
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\320775688.py", line 258, in safe_insert
+    dim_df.to_sql(table_name, conn, if_exists="append", index=False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: dim_protocol.protocol_id
+2025-11-26 00:10:26,372 | INFO | ===== ETL STARTED =====
+2025-11-26 00:10:26,393 | INFO | Creating star schema from SQL file...
+2025-11-26 00:10:30,367 | INFO | Star schema created successfully.
+2025-11-26 00:10:30,593 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:10:30,593 | INFO | Cleaning started...
+2025-11-26 00:10:30,643 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:10:30,804 | INFO | Cleaning finished.
+2025-11-26 00:10:30,806 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:10:30,864 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:10:30,866 | INFO | Loading dimensions with duplicate handling...
+2025-11-26 00:10:30,925 | ERROR | ETL FAILED: UNIQUE constraint failed: dim_protocol.protocol_id
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\2228333905.py", line 377, in run_full_etl
+    load_dimensions(df, conn)       # 5) dimensions
+    ~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\320775688.py", line 290, in load_dimensions
+    safe_insert("dim_protocol", df[[
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+        "protocol_id", "protocol_type", "stimulation_days",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        "total_fsh_dose", "trigger_type", "recommended_protocol"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ]].drop_duplicates(), key_col="protocol_id")
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\320775688.py", line 258, in safe_insert
+    dim_df.to_sql(table_name, conn, if_exists="append", index=False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: dim_protocol.protocol_id
+2025-11-26 00:11:49,551 | INFO | ===== ETL STARTED =====
+2025-11-26 00:11:49,592 | INFO | Creating star schema from SQL file...
+2025-11-26 00:11:51,091 | INFO | Star schema created successfully.
+2025-11-26 00:11:51,277 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:11:51,277 | INFO | Cleaning started...
+2025-11-26 00:11:51,309 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:11:51,425 | INFO | Cleaning finished.
+2025-11-26 00:11:51,427 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:11:51,494 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:11:51,495 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:11:51,813 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:11:52,080 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:11:52,536 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:11:52,835 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:11:53,124 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:11:53,358 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:11:53,358 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:11:53,361 | ERROR | dim_time is empty – cannot link fact_ivf_cycle to time dimension.
+2025-11-26 00:11:53,363 | INFO | Loading fact_transfer...
+2025-11-26 00:11:53,364 | ERROR | dim_time is empty – cannot link fact_transfer to time dimension.
+2025-11-26 00:11:53,365 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 00:14:00,772 | INFO | ===== ETL STARTED =====
+2025-11-26 00:14:00,790 | INFO | Creating star schema from SQL file...
+2025-11-26 00:14:02,372 | INFO | Star schema created successfully.
+2025-11-26 00:14:02,544 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:14:02,544 | INFO | Cleaning started...
+2025-11-26 00:14:02,576 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:14:02,695 | INFO | Cleaning finished.
+2025-11-26 00:14:02,697 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:14:02,745 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:14:02,746 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:14:03,095 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:14:03,373 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:14:03,660 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:14:03,939 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:14:04,206 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:14:04,460 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:14:04,460 | INFO | Building dim_time...
+2025-11-26 00:14:04,621 | INFO | dim_time inserted 3376 rows.
+2025-11-26 00:14:04,649 | INFO | dim_time ready.
+2025-11-26 00:14:04,650 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:14:05,371 | INFO | fact_ivf_cycle: 10000 rows.
+2025-11-26 00:14:05,375 | INFO | Loading fact_transfer...
+2025-11-26 00:14:05,511 | ERROR | ETL FAILED: table fact_transfer has no column named transfer_time_fk
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\2417352410.py", line 425, in run_full_etl
+    load_fact_transfer(df, conn)    # 7) fact_transfer
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\2417352410.py", line 358, in load_fact_transfer
+    fact_t.to_sql("fact_transfer", conn, if_exists="append", index=False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: table fact_transfer has no column named transfer_time_fk
+2025-11-26 00:14:30,472 | INFO | ===== ETL STARTED =====
+2025-11-26 00:14:30,477 | INFO | Creating star schema from SQL file...
+2025-11-26 00:14:32,861 | INFO | Star schema created successfully.
+2025-11-26 00:14:33,041 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:14:33,041 | INFO | Cleaning started...
+2025-11-26 00:14:33,074 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:14:33,191 | INFO | Cleaning finished.
+2025-11-26 00:14:33,193 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:14:33,239 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:14:33,241 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:14:33,739 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:14:34,128 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:14:34,673 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:14:34,937 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:14:35,216 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:14:35,550 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:14:35,551 | INFO | Building dim_time...
+2025-11-26 00:14:35,723 | INFO | dim_time inserted 3376 rows.
+2025-11-26 00:14:35,726 | INFO | dim_time ready.
+2025-11-26 00:14:35,727 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:14:36,108 | INFO | fact_ivf_cycle: 10000 rows.
+2025-11-26 00:14:36,112 | INFO | Loading fact_transfer...
+2025-11-26 00:14:36,157 | ERROR | ETL FAILED: table fact_transfer has no column named transfer_time_fk
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\3960983684.py", line 425, in run_full_etl
+    load_fact_transfer(df, conn)    # 7) fact_transfer
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\3960983684.py", line 358, in load_fact_transfer
+    fact_t.to_sql("fact_transfer", conn, if_exists="append", index=False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: table fact_transfer has no column named transfer_time_fk
+2025-11-26 00:15:13,437 | INFO | ===== ETL STARTED =====
+2025-11-26 00:15:13,459 | INFO | Creating star schema from SQL file...
+2025-11-26 00:15:14,401 | INFO | Star schema created successfully.
+2025-11-26 00:15:14,621 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:15:14,621 | INFO | Cleaning started...
+2025-11-26 00:15:14,657 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:15:14,797 | INFO | Cleaning finished.
+2025-11-26 00:15:14,800 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:15:14,848 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:15:14,850 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:15:15,306 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:15:15,594 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:15:15,862 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:15:16,149 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:15:16,394 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:15:16,683 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:15:16,683 | INFO | Building dim_time...
+2025-11-26 00:15:16,783 | INFO | dim_time inserted 3376 rows.
+2025-11-26 00:15:16,784 | INFO | dim_time ready.
+2025-11-26 00:15:16,785 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:15:17,061 | INFO | fact_ivf_cycle: 10000 rows.
+2025-11-26 00:15:17,066 | INFO | Loading fact_transfer...
+2025-11-26 00:15:17,107 | ERROR | ETL FAILED: table fact_transfer has no column named transfer_time_fk
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\117092219.py", line 425, in run_full_etl
+    load_fact_transfer(df, conn)    # 7) fact_transfer
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\117092219.py", line 358, in load_fact_transfer
+    fact_t.to_sql("fact_transfer", conn, if_exists="append", index=False)
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\core\generic.py", line 3087, in to_sql
+    return sql.to_sql(
+           ~~~~~~~~~~^
+        self,
+        ^^^^^
+    ...<8 lines>...
+        method=method,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 842, in to_sql
+    return pandas_sql.to_sql(
+           ~~~~~~~~~~~~~~~~~^
+        frame,
+        ^^^^^^
+    ...<9 lines>...
+        **engine_kwargs,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2851, in to_sql
+    return table.insert(chunksize, method)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 1119, in insert
+    num_inserted = exec_insert(conn, keys, chunk_iter)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2547, in _execute_insert
+    conn.executemany(self.insert_statement(num_rows=1), data_list)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: table fact_transfer has no column named transfer_time_fk
+2025-11-26 00:17:30,573 | INFO | ===== ETL STARTED =====
+2025-11-26 00:17:30,576 | INFO | Creating star schema from SQL file...
+2025-11-26 00:17:31,986 | ERROR | ETL FAILED: unknown column "transfer_time_id" in foreign key definition
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\117092219.py", line 415, in run_full_etl
+    run_schema_sql()                # 1) rebuild schema
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\117092219.py", line 46, in run_schema_sql
+    conn.executescript(sql_script)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: unknown column "transfer_time_id" in foreign key definition
+2025-11-26 00:20:14,845 | INFO | ===== ETL STARTED =====
+2025-11-26 00:20:14,864 | INFO | Creating star schema from SQL file...
+2025-11-26 00:20:16,210 | ERROR | ETL FAILED: unknown column "transfer_time_id" in foreign key definition
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\318720069.py", line 415, in run_full_etl
+    run_schema_sql()                # 1) rebuild schema
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\318720069.py", line 46, in run_schema_sql
+    conn.executescript(sql_script)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: unknown column "transfer_time_id" in foreign key definition
+2025-11-26 00:20:25,479 | INFO | ===== ETL STARTED =====
+2025-11-26 00:20:25,482 | INFO | Creating star schema from SQL file...
+2025-11-26 00:20:27,945 | ERROR | ETL FAILED: unknown column "transfer_time_id" in foreign key definition
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\318720069.py", line 415, in run_full_etl
+    run_schema_sql()                # 1) rebuild schema
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\318720069.py", line 46, in run_schema_sql
+    conn.executescript(sql_script)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: unknown column "transfer_time_id" in foreign key definition
+2025-11-26 00:21:01,341 | INFO | ===== ETL STARTED =====
+2025-11-26 00:21:01,357 | INFO | Creating star schema from SQL file...
+2025-11-26 00:21:02,679 | ERROR | ETL FAILED: unknown column "transfer_time_id" in foreign key definition
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\117092219.py", line 415, in run_full_etl
+    run_schema_sql()                # 1) rebuild schema
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\117092219.py", line 46, in run_schema_sql
+    conn.executescript(sql_script)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: unknown column "transfer_time_id" in foreign key definition
+2025-11-26 00:21:13,931 | INFO | ===== ETL STARTED =====
+2025-11-26 00:21:13,946 | INFO | Creating star schema from SQL file...
+2025-11-26 00:21:15,167 | ERROR | ETL FAILED: unknown column "transfer_time_id" in foreign key definition
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\117092219.py", line 415, in run_full_etl
+    run_schema_sql()                # 1) rebuild schema
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\117092219.py", line 46, in run_schema_sql
+    conn.executescript(sql_script)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: unknown column "transfer_time_id" in foreign key definition
+2025-11-26 00:22:59,093 | INFO | ===== ETL STARTED =====
+2025-11-26 00:22:59,110 | INFO | Creating star schema from SQL file...
+2025-11-26 00:22:59,725 | ERROR | ETL FAILED: unknown column "transfer_time_id" in foreign key definition
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1988205920.py", line 415, in run_full_etl
+    run_schema_sql()                # 1) rebuild schema
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1988205920.py", line 46, in run_schema_sql
+    conn.executescript(sql_script)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: unknown column "transfer_time_id" in foreign key definition
+2025-11-26 00:23:03,699 | INFO | ===== ETL STARTED =====
+2025-11-26 00:23:03,712 | INFO | Creating star schema from SQL file...
+2025-11-26 00:23:04,958 | ERROR | ETL FAILED: unknown column "transfer_time_id" in foreign key definition
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1988205920.py", line 415, in run_full_etl
+    run_schema_sql()                # 1) rebuild schema
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\1988205920.py", line 46, in run_schema_sql
+    conn.executescript(sql_script)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: unknown column "transfer_time_id" in foreign key definition
+2025-11-26 00:24:27,152 | INFO | ===== ETL STARTED =====
+2025-11-26 00:24:27,167 | INFO | Creating star schema from SQL file...
+2025-11-26 00:24:27,793 | ERROR | ETL FAILED: unknown column "transfer_time_id" in foreign key definition
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\3334454983.py", line 415, in run_full_etl
+    run_schema_sql()                # 1) rebuild schema
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_11696\3334454983.py", line 46, in run_schema_sql
+    conn.executescript(sql_script)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: unknown column "transfer_time_id" in foreign key definition
+2025-11-26 00:26:13,447 | INFO | ===== ETL STARTED =====
+2025-11-26 00:26:13,514 | INFO | Creating star schema from SQL file...
+2025-11-26 00:26:14,305 | INFO | Star schema created successfully.
+2025-11-26 00:26:14,503 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:26:14,503 | INFO | Cleaning started...
+2025-11-26 00:26:14,571 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:26:14,701 | INFO | Cleaning finished.
+2025-11-26 00:26:14,703 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:26:14,750 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:26:14,752 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:26:15,094 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:26:15,351 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:26:15,606 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:26:15,862 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:26:16,128 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:26:16,450 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:26:16,451 | INFO | Building dim_time...
+2025-11-26 00:26:16,551 | INFO | dim_time inserted 3376 rows.
+2025-11-26 00:26:16,552 | INFO | dim_time ready.
+2025-11-26 00:26:16,553 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:26:16,862 | INFO | fact_ivf_cycle: 10000 rows.
+2025-11-26 00:26:16,867 | INFO | Loading fact_transfer...
+2025-11-26 00:26:17,029 | INFO | fact_transfer: 10000 rows.
+2025-11-26 00:26:17,051 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 00:38:13,577 | INFO | ===== ETL STARTED =====
+2025-11-26 00:38:13,609 | INFO | Creating star schema from SQL file...
+2025-11-26 00:38:14,530 | INFO | Star schema created successfully.
+2025-11-26 00:38:14,838 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:38:14,839 | INFO | Cleaning started...
+2025-11-26 00:38:14,928 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:38:15,063 | INFO | Cleaning finished.
+2025-11-26 00:38:15,065 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:38:15,143 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:38:15,144 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:38:15,532 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:38:15,830 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:38:16,153 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:38:16,385 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:38:16,619 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:38:16,941 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:38:16,942 | INFO | Building dim_time...
+2025-11-26 00:38:17,107 | INFO | dim_time inserted 3376 rows.
+2025-11-26 00:38:17,108 | INFO | dim_time ready.
+2025-11-26 00:38:17,108 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:38:17,454 | INFO | fact_ivf_cycle: 10000 rows.
+2025-11-26 00:38:17,459 | INFO | Loading fact_transfer...
+2025-11-26 00:38:17,697 | INFO | fact_transfer: 10000 rows.
+2025-11-26 00:38:17,700 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 00:38:47,223 | INFO | ===== ETL STARTED =====
+2025-11-26 00:38:47,230 | INFO | Creating star schema from SQL file...
+2025-11-26 00:38:49,919 | INFO | Star schema created successfully.
+2025-11-26 00:38:50,099 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:38:50,099 | INFO | Cleaning started...
+2025-11-26 00:38:50,135 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:38:50,260 | INFO | Cleaning finished.
+2025-11-26 00:38:50,262 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:38:50,315 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:38:50,316 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:38:50,620 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:38:51,353 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:38:52,121 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:38:52,708 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:38:53,199 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:38:53,808 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:38:53,808 | INFO | Building dim_time...
+2025-11-26 00:38:53,975 | INFO | dim_time inserted 3376 rows.
+2025-11-26 00:38:53,991 | INFO | dim_time ready.
+2025-11-26 00:38:53,991 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:38:54,421 | INFO | fact_ivf_cycle: 10000 rows.
+2025-11-26 00:38:54,424 | INFO | Loading fact_transfer...
+2025-11-26 00:38:54,609 | INFO | fact_transfer: 10000 rows.
+2025-11-26 00:38:54,614 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 00:39:17,894 | INFO | ===== ETL STARTED =====
+2025-11-26 00:39:17,916 | INFO | Creating star schema from SQL file...
+2025-11-26 00:39:19,720 | INFO | Star schema created successfully.
+2025-11-26 00:39:19,971 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:39:19,971 | INFO | Cleaning started...
+2025-11-26 00:39:20,009 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:39:20,155 | INFO | Cleaning finished.
+2025-11-26 00:39:20,157 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:39:20,217 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:39:20,218 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:39:20,531 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:39:20,919 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:39:21,333 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:39:21,586 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:39:21,865 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:39:22,131 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:39:22,132 | INFO | Building dim_time...
+2025-11-26 00:39:22,254 | INFO | dim_time inserted 3376 rows.
+2025-11-26 00:39:22,255 | INFO | dim_time ready.
+2025-11-26 00:39:22,255 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:39:22,566 | INFO | fact_ivf_cycle: 10000 rows.
+2025-11-26 00:39:22,569 | INFO | Loading fact_transfer...
+2025-11-26 00:39:22,731 | INFO | fact_transfer: 10000 rows.
+2025-11-26 00:39:22,748 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 00:39:43,207 | INFO | ===== ETL STARTED =====
+2025-11-26 00:39:43,235 | INFO | Creating star schema from SQL file...
+2025-11-26 00:39:44,942 | INFO | Star schema created successfully.
+2025-11-26 00:39:45,128 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:39:45,128 | INFO | Cleaning started...
+2025-11-26 00:39:45,166 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:39:45,308 | INFO | Cleaning finished.
+2025-11-26 00:39:45,311 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:39:45,363 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:39:45,365 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:39:45,753 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:39:46,089 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:39:46,443 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:39:46,764 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:39:46,998 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:39:47,255 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:39:47,255 | INFO | Building dim_time...
+2025-11-26 00:39:47,420 | INFO | dim_time inserted 3376 rows.
+2025-11-26 00:39:47,421 | INFO | dim_time ready.
+2025-11-26 00:39:47,422 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:39:47,910 | INFO | fact_ivf_cycle: 10000 rows.
+2025-11-26 00:39:47,914 | INFO | Loading fact_transfer...
+2025-11-26 00:39:48,144 | INFO | fact_transfer: 10000 rows.
+2025-11-26 00:39:48,148 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 00:40:24,156 | INFO | ===== ETL STARTED =====
+2025-11-26 00:40:24,194 | INFO | Creating star schema from SQL file...
+2025-11-26 00:40:28,300 | INFO | Star schema created successfully.
+2025-11-26 00:40:28,484 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:40:28,484 | INFO | Cleaning started...
+2025-11-26 00:40:28,519 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:40:28,649 | INFO | Cleaning finished.
+2025-11-26 00:40:28,651 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:40:28,709 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:40:28,711 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:40:29,036 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:40:29,377 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:40:29,876 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:40:30,134 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:40:30,376 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:40:30,632 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:40:30,632 | INFO | Building dim_time...
+2025-11-26 00:40:30,789 | INFO | dim_time inserted 3376 rows.
+2025-11-26 00:40:30,790 | INFO | dim_time ready.
+2025-11-26 00:40:30,791 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:40:31,166 | INFO | fact_ivf_cycle: 10000 rows.
+2025-11-26 00:40:31,170 | INFO | Loading fact_transfer...
+2025-11-26 00:40:31,344 | INFO | fact_transfer: 10000 rows.
+2025-11-26 00:40:31,349 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 00:43:08,121 | INFO | ===== ETL STARTED =====
+2025-11-26 00:43:08,164 | INFO | Creating star schema from SQL file...
+2025-11-26 00:43:09,979 | INFO | Star schema created successfully.
+2025-11-26 00:43:11,037 | INFO | Loaded 10000 rows from raw table.
+2025-11-26 00:43:11,037 | INFO | Cleaning started...
+2025-11-26 00:43:11,088 | INFO | Dropped 0 duplicate rows.
+2025-11-26 00:43:11,223 | INFO | Cleaning finished.
+2025-11-26 00:43:11,225 | INFO | Applying placeholder rules & generating IDs...
+2025-11-26 00:43:11,285 | INFO | Placeholder rules & IDs generated.
+2025-11-26 00:43:11,286 | INFO | Loading dimensions (FULL REFRESH MODE)...
+2025-11-26 00:43:11,837 | INFO | dim_female: inserted 10000 rows.
+2025-11-26 00:43:12,237 | INFO | dim_male: inserted 10000 rows.
+2025-11-26 00:43:12,837 | INFO | dim_protocol: inserted 9670 rows.
+2025-11-26 00:43:13,313 | INFO | dim_doctor: inserted 6 rows.
+2025-11-26 00:43:13,759 | INFO | dim_outcome: inserted 41 rows.
+2025-11-26 00:43:14,246 | INFO | dim_embryo: inserted 10000 rows.
+2025-11-26 00:43:14,247 | INFO | Building dim_time...
+2025-11-26 00:43:14,425 | INFO | dim_time inserted 3376 rows.
+2025-11-26 00:43:14,427 | INFO | dim_time ready.
+2025-11-26 00:43:14,427 | INFO | Loading fact_ivf_cycle...
+2025-11-26 00:43:14,903 | INFO | fact_ivf_cycle: 10000 rows.
+2025-11-26 00:43:14,908 | INFO | Loading fact_transfer...
+2025-11-26 00:43:15,138 | INFO | fact_transfer: 10000 rows.
+2025-11-26 00:43:15,148 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 00:55:16,512 | INFO | ===== ETL STARTED =====
+2025-11-26 00:55:16,579 | INFO | Schema NOT recreated (incremental mode).
+2025-11-26 00:55:18,763 | INFO | Loaded 10000 raw rows.
+2025-11-26 00:55:18,952 | INFO | Cleaning DONE.
+2025-11-26 00:55:19,062 | INFO | Loading dimensions (incremental mode)...
+2025-11-26 00:55:19,383 | INFO | dim_female: created new table.
+2025-11-26 00:55:19,571 | INFO | dim_male: created new table.
+2025-11-26 00:55:19,771 | INFO | dim_protocol: created new table.
+2025-11-26 00:55:19,959 | INFO | dim_doctor: created new table.
+2025-11-26 00:55:20,126 | INFO | dim_outcome: created new table.
+2025-11-26 00:55:20,293 | INFO | dim_embryo: created new table.
+2025-11-26 00:55:20,482 | ERROR | ETL FAILED: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: time_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_21648\1883269963.py", line 231, in run_full_etl
+    load_fact_tables(df, conn)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_21648\1883269963.py", line 190, in load_fact_tables
+    time_df = pd.read_sql("SELECT time_id, full_date FROM dim_time;", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+2025-11-26 00:57:48,270 | INFO | ===== ETL STARTED =====
+2025-11-26 00:57:48,274 | INFO | Schema NOT recreated (incremental mode).
+2025-11-26 00:57:48,450 | INFO | Loaded 10000 raw rows.
+2025-11-26 00:57:48,603 | INFO | Cleaning DONE.
+2025-11-26 00:57:48,656 | INFO | Loading dimensions (incremental mode)...
+2025-11-26 00:57:48,973 | INFO | dim_female: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 00:57:49,219 | INFO | dim_male: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 00:57:49,518 | INFO | dim_protocol: 0 inserted, 9670 updated. TOTAL=9290
+2025-11-26 00:57:49,707 | INFO | dim_doctor: 0 inserted, 6 updated. TOTAL=1
+2025-11-26 00:57:49,908 | INFO | dim_outcome: 0 inserted, 1735 updated. TOTAL=9
+2025-11-26 00:57:50,196 | INFO | dim_embryo: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 00:57:50,597 | ERROR | ETL FAILED: Cannot add a PRIMARY KEY column
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_21648\4067135580.py", line 256, in run_full_etl
+    build_dim_time(df, conn)
+    ~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_21648\4067135580.py", line 238, in build_dim_time
+    conn.execute("ALTER TABLE dim_time ADD COLUMN time_id INTEGER PRIMARY KEY AUTOINCREMENT;")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: Cannot add a PRIMARY KEY column
+2025-11-26 01:11:19,985 | INFO | ===== ETL STARTED =====
+2025-11-26 01:11:19,990 | INFO | Schema NOT recreated (incremental mode).
+2025-11-26 01:11:20,398 | INFO | Loaded 10000 raw rows.
+2025-11-26 01:11:20,554 | INFO | Cleaning DONE.
+2025-11-26 01:11:20,610 | INFO | Loading dimensions (incremental mode)...
+2025-11-26 01:11:20,923 | INFO | dim_female: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:11:21,200 | INFO | dim_male: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:11:21,544 | INFO | dim_protocol: 0 inserted, 9670 updated. TOTAL=9290
+2025-11-26 01:11:21,688 | INFO | dim_doctor: 0 inserted, 6 updated. TOTAL=1
+2025-11-26 01:11:21,844 | INFO | dim_outcome: 0 inserted, 1735 updated. TOTAL=9
+2025-11-26 01:11:22,077 | INFO | dim_embryo: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:11:22,490 | ERROR | ETL FAILED: Cannot add a PRIMARY KEY column
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_21648\4067135580.py", line 256, in run_full_etl
+    build_dim_time(df, conn)
+    ~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_21648\4067135580.py", line 238, in build_dim_time
+    conn.execute("ALTER TABLE dim_time ADD COLUMN time_id INTEGER PRIMARY KEY AUTOINCREMENT;")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: Cannot add a PRIMARY KEY column
+2025-11-26 01:14:50,027 | INFO | ===== ETL STARTED =====
+2025-11-26 01:14:50,079 | INFO | Schema NOT recreated (incremental mode).
+2025-11-26 01:14:50,498 | INFO | Loaded 10000 raw rows.
+2025-11-26 01:14:50,694 | INFO | Cleaning DONE.
+2025-11-26 01:14:50,762 | INFO | Loading dimensions (incremental mode)...
+2025-11-26 01:14:51,073 | INFO | dim_female: created new table.
+2025-11-26 01:14:51,573 | INFO | dim_male: created new table.
+2025-11-26 01:14:52,248 | INFO | dim_protocol: created new table.
+2025-11-26 01:14:52,714 | INFO | dim_doctor: created new table.
+2025-11-26 01:14:53,182 | INFO | dim_outcome: created new table.
+2025-11-26 01:14:53,949 | INFO | dim_embryo: created new table.
+2025-11-26 01:14:55,260 | ERROR | ETL FAILED: Cannot add a PRIMARY KEY column
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_19484\4067135580.py", line 256, in run_full_etl
+    build_dim_time(df, conn)
+    ~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_19484\4067135580.py", line 238, in build_dim_time
+    conn.execute("ALTER TABLE dim_time ADD COLUMN time_id INTEGER PRIMARY KEY AUTOINCREMENT;")
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: Cannot add a PRIMARY KEY column
+2025-11-26 01:16:45,542 | INFO | ===== ETL STARTED =====
+2025-11-26 01:16:45,544 | INFO | Schema NOT recreated (incremental mode).
+2025-11-26 01:16:45,821 | INFO | Loaded 10000 raw rows.
+2025-11-26 01:16:45,974 | INFO | Cleaning DONE.
+2025-11-26 01:16:46,028 | INFO | Loading dimensions (incremental mode)...
+2025-11-26 01:16:46,328 | INFO | dim_female: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:16:46,584 | INFO | dim_male: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:16:46,895 | INFO | dim_protocol: 0 inserted, 9670 updated. TOTAL=9290
+2025-11-26 01:16:47,039 | INFO | dim_doctor: 0 inserted, 6 updated. TOTAL=1
+2025-11-26 01:16:47,205 | INFO | dim_outcome: 0 inserted, 1735 updated. TOTAL=9
+2025-11-26 01:16:47,450 | INFO | dim_embryo: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:16:47,851 | INFO | dim_time inserted 3376 rows.
+2025-11-26 01:16:47,853 | ERROR | ETL FAILED: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: time_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_19484\3689835875.py", line 256, in run_full_etl
+    load_fact_tables(df, conn)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_19484\3689835875.py", line 190, in load_fact_tables
+    time_df = pd.read_sql("SELECT time_id, full_date FROM dim_time;", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+2025-11-26 01:17:42,433 | INFO | ===== ETL STARTED =====
+2025-11-26 01:17:42,458 | INFO | Schema NOT recreated (incremental mode).
+2025-11-26 01:17:42,647 | INFO | Loaded 10000 raw rows.
+2025-11-26 01:17:42,799 | INFO | Cleaning DONE.
+2025-11-26 01:17:42,882 | INFO | Loading dimensions (incremental mode)...
+2025-11-26 01:17:43,126 | INFO | dim_female: created new table.
+2025-11-26 01:17:43,320 | INFO | dim_male: created new table.
+2025-11-26 01:17:43,507 | INFO | dim_protocol: created new table.
+2025-11-26 01:17:43,695 | INFO | dim_doctor: created new table.
+2025-11-26 01:17:43,840 | INFO | dim_outcome: created new table.
+2025-11-26 01:17:44,040 | INFO | dim_embryo: created new table.
+2025-11-26 01:17:44,464 | INFO | dim_time inserted 3376 rows.
+2025-11-26 01:17:44,465 | ERROR | ETL FAILED: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: time_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_13268\3689835875.py", line 256, in run_full_etl
+    load_fact_tables(df, conn)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_13268\3689835875.py", line 190, in load_fact_tables
+    time_df = pd.read_sql("SELECT time_id, full_date FROM dim_time;", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT time_id, full_date FROM dim_time;': no such column: time_id
+2025-11-26 01:19:11,078 | INFO | ===== ETL STARTED =====
+2025-11-26 01:19:11,080 | INFO | Schema NOT recreated (incremental mode).
+2025-11-26 01:19:11,297 | INFO | Loaded 10000 raw rows.
+2025-11-26 01:19:11,444 | INFO | Cleaning DONE.
+2025-11-26 01:19:11,496 | INFO | Loading dimensions (incremental mode)...
+2025-11-26 01:19:11,755 | INFO | dim_female: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:19:12,031 | INFO | dim_male: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:19:12,309 | INFO | dim_protocol: 0 inserted, 9670 updated. TOTAL=9290
+2025-11-26 01:19:12,452 | INFO | dim_doctor: 0 inserted, 6 updated. TOTAL=1
+2025-11-26 01:19:12,608 | INFO | dim_outcome: 0 inserted, 1735 updated. TOTAL=9
+2025-11-26 01:19:12,898 | INFO | dim_embryo: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:19:13,309 | INFO | dim_time inserted 3376 rows.
+2025-11-26 01:19:13,309 | ERROR | ETL FAILED: Execution failed on sql 'SELECT time_id , full_date FROM dim_time;': no such column: time_id
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: time_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_13268\1328839302.py", line 256, in run_full_etl
+    load_fact_tables(df, conn)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_13268\1328839302.py", line 190, in load_fact_tables
+    time_df = pd.read_sql("SELECT time_id , full_date FROM dim_time;", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT time_id , full_date FROM dim_time;': no such column: time_id
+2025-11-26 01:19:39,445 | INFO | ===== ETL STARTED =====
+2025-11-26 01:19:39,447 | INFO | Schema NOT recreated (incremental mode).
+2025-11-26 01:19:39,619 | INFO | Loaded 10000 raw rows.
+2025-11-26 01:19:39,774 | INFO | Cleaning DONE.
+2025-11-26 01:19:39,827 | INFO | Loading dimensions (incremental mode)...
+2025-11-26 01:19:40,088 | INFO | dim_female: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:19:40,343 | INFO | dim_male: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:19:40,610 | INFO | dim_protocol: 0 inserted, 9670 updated. TOTAL=9290
+2025-11-26 01:19:40,798 | INFO | dim_doctor: 0 inserted, 6 updated. TOTAL=1
+2025-11-26 01:19:40,965 | INFO | dim_outcome: 0 inserted, 1735 updated. TOTAL=9
+2025-11-26 01:19:41,198 | INFO | dim_embryo: 0 inserted, 10000 updated. TOTAL=10000
+2025-11-26 01:19:41,688 | INFO | dim_time inserted 3376 rows.
+2025-11-26 01:19:41,688 | ERROR | ETL FAILED: Execution failed on sql 'SELECT time_id , full_date FROM dim_time;': no such column: time_id
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: time_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_13268\1328839302.py", line 256, in run_full_etl
+    load_fact_tables(df, conn)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_13268\1328839302.py", line 190, in load_fact_tables
+    time_df = pd.read_sql("SELECT time_id , full_date FROM dim_time;", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT time_id , full_date FROM dim_time;': no such column: time_id
+2025-11-26 01:22:02,614 | INFO | ===== ETL STARTED =====
+2025-11-26 01:22:02,651 | INFO | Schema NOT recreated (incremental mode).
+2025-11-26 01:22:03,157 | INFO | Loaded 10000 raw rows.
+2025-11-26 01:22:03,331 | INFO | Cleaning DONE.
+2025-11-26 01:22:03,389 | INFO | Loading dimensions (incremental mode)...
+2025-11-26 01:22:03,679 | INFO | dim_female: created new table.
+2025-11-26 01:22:03,879 | INFO | dim_male: created new table.
+2025-11-26 01:22:04,079 | INFO | dim_protocol: created new table.
+2025-11-26 01:22:04,212 | INFO | dim_doctor: created new table.
+2025-11-26 01:22:04,368 | INFO | dim_outcome: created new table.
+2025-11-26 01:22:04,534 | INFO | dim_embryo: created new table.
+2025-11-26 01:22:04,712 | ERROR | ETL FAILED: Execution failed on sql 'SELECT time_id , full_date FROM dim_time;': no such column: time_id
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: time_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_8100\1151043477.py", line 230, in run_full_etl
+    load_fact_tables(df, conn)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_8100\1151043477.py", line 190, in load_fact_tables
+    time_df = pd.read_sql("SELECT time_id , full_date FROM dim_time;", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT time_id , full_date FROM dim_time;': no such column: time_id
+2025-11-26 01:26:19,001 | INFO | ===== ETL STARTED =====
+2025-11-26 01:26:19,003 | INFO | Rebuilding schema (REFRESH MODE)...
+2025-11-26 01:26:20,506 | INFO | Schema created successfully.
+2025-11-26 01:26:20,701 | INFO | Loaded 10000 raw rows.
+2025-11-26 01:26:20,863 | INFO | Cleaning DONE.
+2025-11-26 01:26:20,919 | INFO | Loading dimensions (refresh mode)...
+2025-11-26 01:26:22,839 | ERROR | ETL FAILED: Execution failed on sql 'SELECT time_id , full_date FROM dim_time;': no such column: time_id
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: time_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_23416\2953281418.py", line 230, in run_full_etl
+    load_fact_tables(df, conn)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_23416\2953281418.py", line 190, in load_fact_tables
+    time_df = pd.read_sql("SELECT time_id , full_date FROM dim_time;", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT time_id , full_date FROM dim_time;': no such column: time_id
+2025-11-26 01:29:32,000 | INFO | ===== ETL STARTED =====
+2025-11-26 01:29:32,004 | INFO | Rebuilding schema (REFRESH MODE)...
+2025-11-26 01:29:33,198 | INFO | Schema created successfully.
+2025-11-26 01:29:33,399 | INFO | Loaded 10000 raw rows.
+2025-11-26 01:29:59,215 | INFO | ===== ETL STARTED =====
+2025-11-26 01:29:59,307 | INFO | Rebuilding schema (REFRESH MODE)...
+2025-11-26 01:30:00,288 | INFO | Schema created successfully.
+2025-11-26 01:30:00,505 | INFO | Loaded 10000 raw rows.
+2025-11-26 03:20:54,444 | INFO | ===== ETL STARTED =====
+2025-11-26 03:20:55,405 | INFO | Schema (fresh) created successfully.
+2025-11-26 03:20:55,406 | ERROR | Raw load FAILED: Execution failed on sql 'SELECT * FROM ivf_patients': no such table: ivf_patients
+Traceback (most recent call last):
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2674, in execute
+    cur.execute(sql, *args)
+    ~~~~~~~~~~~^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: ivf_patients
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Rawan\AppData\Local\Temp\ipykernel_12392\1573224303.py", line 44, in load_raw_df
+    df = pd.read_sql("SELECT * FROM ivf_patients", conn)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 706, in read_sql
+    return pandas_sql.read_query(
+           ~~~~~~~~~~~~~~~~~~~~~^
+        sql,
+        ^^^^
+    ...<6 lines>...
+        dtype=dtype,
+        ^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2738, in read_query
+    cursor = self.execute(sql, params)
+  File "c:\Users\Rawan\anaconda3\Lib\site-packages\pandas\io\sql.py", line 2686, in execute
+    raise ex from exc
+pandas.errors.DatabaseError: Execution failed on sql 'SELECT * FROM ivf_patients': no such table: ivf_patients
+2025-11-26 03:22:12,792 | INFO | ===== ETL STARTED =====
+2025-11-26 03:22:13,585 | INFO | Schema (fresh) created successfully.
+2025-11-26 03:22:13,931 | INFO | Loaded 10000 raw rows.
+2025-11-26 03:22:14,884 | INFO | dim_female: 10000 processed.
+2025-11-26 03:22:15,153 | INFO | dim_male: 10000 processed.
+2025-11-26 03:22:15,463 | INFO | dim_protocol: 9767 processed.
+2025-11-26 03:22:15,675 | INFO | dim_doctor: 6 processed.
+2025-11-26 03:22:15,908 | INFO | dim_outcome: 1750 processed.
+2025-11-26 03:22:16,219 | INFO | dim_embryo: 10000 processed.
+2025-11-26 03:22:16,529 | INFO | dim_time DONE.
+2025-11-26 03:22:17,100 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 03:22:31,270 | INFO | ===== ETL STARTED =====
+2025-11-26 03:22:31,444 | INFO | Loaded 10000 raw rows.
+2025-11-26 03:22:32,131 | INFO | dim_female: 10000 processed.
+2025-11-26 03:22:32,251 | INFO | dim_male: 10000 processed.
+2025-11-26 03:22:32,398 | INFO | dim_protocol: 9767 processed.
+2025-11-26 03:22:32,463 | INFO | dim_doctor: 6 processed.
+2025-11-26 03:22:32,563 | INFO | dim_outcome: 1750 processed.
+2025-11-26 03:22:32,662 | INFO | dim_embryo: 10000 processed.
+2025-11-26 03:22:32,941 | INFO | dim_time DONE.
+2025-11-26 03:22:33,471 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 03:23:51,880 | INFO | ===== ETL STARTED =====
+2025-11-26 03:23:51,942 | INFO | Loaded 4 raw rows.
+2025-11-26 03:23:52,071 | INFO | dim_female: 3 processed.
+2025-11-26 03:23:52,164 | INFO | dim_male: 3 processed.
+2025-11-26 03:23:52,231 | INFO | dim_protocol: 3 processed.
+2025-11-26 03:23:52,298 | INFO | dim_doctor: 3 processed.
+2025-11-26 03:23:52,364 | INFO | dim_outcome: 3 processed.
+2025-11-26 03:23:52,443 | INFO | dim_embryo: 3 processed.
+2025-11-26 03:23:52,509 | INFO | dim_time DONE.
+2025-11-26 03:23:52,776 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 04:49:48,706 | INFO | ===== ETL STARTED =====
+2025-11-26 04:49:49,767 | INFO | Schema (fresh) created successfully.
+2025-11-26 04:49:49,968 | INFO | Loaded 10000 raw rows.
+2025-11-26 04:49:50,880 | INFO | dim_female: 10000 processed.
+2025-11-26 04:49:51,165 | INFO | dim_male: 10000 processed.
+2025-11-26 04:49:51,422 | INFO | dim_protocol: 9767 processed.
+2025-11-26 04:49:51,666 | INFO | dim_doctor: 6 processed.
+2025-11-26 04:49:51,898 | INFO | dim_outcome: 1750 processed.
+2025-11-26 04:49:52,121 | INFO | dim_embryo: 10000 processed.
+2025-11-26 04:49:52,398 | INFO | dim_time DONE.
+2025-11-26 04:49:52,904 | INFO | ETL COMPLETED SUCCESSFULLY.
+2025-11-26 04:50:31,392 | INFO | ===== ETL STARTED =====
+2025-11-26 04:50:31,464 | INFO | Loaded 4 raw rows.
+2025-11-26 04:50:31,593 | INFO | dim_female: 3 processed.
+2025-11-26 04:50:31,688 | INFO | dim_male: 3 processed.
+2025-11-26 04:50:31,866 | INFO | dim_protocol: 3 processed.
+2025-11-26 04:50:31,988 | INFO | dim_doctor: 3 processed.
+2025-11-26 04:50:32,064 | INFO | dim_outcome: 3 processed.
+2025-11-26 04:50:32,132 | INFO | dim_embryo: 3 processed.
+2025-11-26 04:50:32,212 | INFO | dim_time DONE.
+2025-11-26 04:50:32,455 | INFO | ETL COMPLETED SUCCESSFULLY.

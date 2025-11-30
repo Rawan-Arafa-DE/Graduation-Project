@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Add Laboratory Results | IVF System{% endblock %}
+{% block content %}
+
+<!-- CSS / JS Files -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add_lab_results.css') }}">
+<script src="{{ url_for('static', filename='js/add_lab_results.js') }}" defer></script>
+
+<div class="container-fluid px-4">
+
+    <!-- BACK BUTTON -->
+    <div class="mb-3">
+        <a href="{{ url_for('patients') }}" class="btn btn-sm btn-secondary back-btn">
+            ← Back to Patients
+        </a>
+    </div>
+
+    <!-- FORM CARD -->
+    <div class="content-wrapper">
+        <h2>Add Laboratory Results (IVF Cycle)</h2>
+
+        <form method="POST" action="{{ url_for('add_lab_results') }}" class="patient-form">
+            
+            <!-- ================= Patient & Case ================= -->
+            <h4>Patient & Case</h4>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Patient ID</label>
+                    <input type="text" name="patient_id" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label>Case ID</label>
+                    <input type="text" name="case_id" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label>Protocol ID</label>
+                    <input type="text" name="protocol_id" class="form-control" required>
+                </div>
+            </div>
+            <hr>
+
+            <!-- ================= Cycle Details ================= -->
+            <h4>Cycle Details</h4>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Cycle Start Time</label>
+                    <input type="date" name="cycle_start_time" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>E2 on Trigger</label>
+                    <input type="number" step="0.01" name="e2_on_trigger" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Injected MII</label>
+                    <input type="number" name="injected_mii" class="form-control">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Endometrium Thickness</label>
+                    <input type="number" step="0.01" name="endometrium_thickness" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Retrieved Oocytes</label>
+                    <input type="number" name="retrieved_oocytes" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Fertilized Oocytes</label>
+                    <input type="number" name="fertilized_oocytes" class="form-control">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Blastocyst (D5)</label>
+                    <input type="number" name="blastocyst_d5" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label>Good Embryos</label>
+                    <input type="number" name="good_embryos" class="form-control">
+                </div>
+            </div>
+            <hr>
+
+            <!-- SUBMIT -->
+            <button type="submit" class="btn btn-primary">Save Lab Results</button>
+            <a href="{{ url_for('patients') }}" class="btn btn-secondary">Cancel</a>
+
+        </form>
+    </div>
+</div>
+{% endblock %}

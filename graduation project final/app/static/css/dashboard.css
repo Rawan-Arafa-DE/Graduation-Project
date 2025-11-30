@@ -1,0 +1,164 @@
+.page-title {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.metric-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+}
+
+.metric-card h3 {
+  font-weight: 700;
+}
+
+.metric-up { color: #38a169; }
+.metric-down { color: #e53e3e; }
+.metric-neutral { color: #718096; }
+
+.chart-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.quick-card {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.view-btn {
+  background: linear-gradient(90deg, #f48acb, #ff7dcc);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.view-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+.page-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #2b2b2b;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.stat-value {
+    font-weight: 600;
+    font-size: 24px;
+    margin-top: 5px;
+}
+
+.stat-change {
+    font-size: 13px;
+    color: #5cb85c; /* Later: dynamic with JS */
+}
+
+.chart-card, .quick-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.analytics-btn {
+    background: #f48acb;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 20px;
+}
+
+.analytics-btn:hover {
+    background: #e86fb5;
+}
+
+.page-title { font-size: 26px; font-weight: 600; }
+
+.metric-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.metric-title { font-size: 14px; color: gray; }
+.metric-value { font-size: 32px; font-weight: 700; }
+.metric-change { font-size: 13px; }
+
+.chart-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    height: 350px;
+}
+
+.insights-btn {
+    background: linear-gradient(90deg, #f48acb, #ff7dcc);
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+}
+.insights-btn:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+/* ==== CARD STYLING ==== */
+.metric-card,
+.chart-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 20px;
+}
+
+/* مسافات بين الصفوف */
+.row {
+  margin-bottom: 20px;
+}
+
+/* ضبط ال charts */
+.chart-card {
+  height: 350px;           /* يحافظ على نفس الارتفاع */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* مارجن تحت آخر شارت */
+.chart-row {
+  margin-bottom: 30px;
+}
+
+/* Quick Insights */
+.insights-section {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.insights-btn {
+  background: #ff7dcc;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+.insights-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(255, 125, 204, 0.4);
+}

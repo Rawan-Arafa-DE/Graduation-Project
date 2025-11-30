@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block title %}Add Patient | IVF System{% endblock %}
+
+{% block content %}
+
+<!-- PAGE CSS + JS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/add_patients.css') }}">
+<script src="{{ url_for('static', filename='js/add_patients.js') }}" defer></script>
+
+<div class="container-fluid px-4">
+
+    <!-- Back Button -->
+    <div style="margin-bottom:20px;">
+        <a href="{{ url_for('patients') }}" class="btn btn-sm back-btn">
+            ← Back to Patients
+        </a>
+    </div>
+
+    <!-- CARD WRAPPER -->
+    <div class="content-wrapper">
+        <h2>Add New Patient</h2>
+
+        <form method="POST" action="{{ url_for('add_patient') }}" class="patient-form">
+
+            <!-- SECTION 1: BASIC INFORMATION -->
+            <h4>Basic Information</h4>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Female (Patient) ID</label>
+                    <input type="text" name="patient_id" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label>Male ID</label>
+                    <input type="text" name="male_id" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label>Case ID</label>
+                    <input type="text" name="case_id" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Doctor ID</label>
+                    <input type="text" name="doctor_id" class="form-control" required>
+                </div>
+            </div>
+            <hr>
+
+            <!-- SECTION 2: FEMALE DATA -->
+            <h4>Female Data</h4>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Female Age</label>
+                    <input type="number" name="female_age" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label>Female BMI</label>
+                    <input type="number" step="0.1" name="female_bmi" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>AMH Level</label>
+                    <input type="number" step="0.01" name="amh_level" class="form-control">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>FSH Level</label>
+                    <input type="number" step="0.01" name="fsh_level" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label>AFC</label>
+                    <input type="number" name="afc" class="form-control">
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- SECTION 3: MALE DATA -->
+            <h4>Male Data</h4>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Male Age</label>
+                    <input type="number" name="male_age" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label>Male Factor</label>
+                    <input type="text" name="male_factor" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Semen Count (mill/ml)</label>
+                    <input type="number" name="semen_count_mill_per_ml" class="form-control">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label>Motility %</label>
+                    <input type="number" step="0.01" name="motility_percent" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label>Morphology %</label>
+                    <input type="number" step="0.01" name="morphology_percent" class="form-control">
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- SECTION 4: IVF CYCLE DATA -->
+            <h4>IVF Cycle Details</h4>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Protocol ID</label>
+                    <input type="text" name="protocol_id" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>E2 on Trigger</label>
+                    <input type="number" step="0.01" name="e2_on_trigger" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Endometrium Thickness</label>
+                    <input type="number" step="0.01" name="endometrium_thickness" class="form-control">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Follicles ≥18mm</label>
+                    <input type="number" name="follicles_18mm" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Retrieved Oocytes</label>
+                    <input type="number" name="retrieved_oocytes" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Injected MII</label>
+                    <input type="number" name="injected_mii" class="form-control">
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Fertilized Oocytes</label>
+                    <input type="number" name="fertilized_oocytes" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Blastocyst (D5)</label>
+                    <input type="number" name="blastocyst_d5" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Good Embryos</label>
+                    <input type="number" name="good_embryos" class="form-control">
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- SECTION 5: OUTCOME -->
+            <h4>Outcome</h4>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label>Risk Level</label>
+                    <input type="text" name="risk_level" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Response Type</label>
+                    <input type="text" name="response_type" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label>Failure Reason</label>
+                    <input type="text" name="failure_reason" class="form-control">
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- SUBMIT -->
+            <button type="submit" class="btn btn-primary save-btn">Save Patient</button>
+            <a href="{{ url_for('patients') }}" class="btn btn-outline-secondary">Cancel</a>
+
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

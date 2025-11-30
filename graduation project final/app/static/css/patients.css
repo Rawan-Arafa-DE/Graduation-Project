@@ -1,0 +1,128 @@
+/* ================================
+   PAGE TITLE
+=================================== */
+.page-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #2d2d2d;
+}
+
+/* ================================
+   CARDS
+=================================== */
+.filter-card,
+.table-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+}
+
+/* ================================
+   BUTTONS
+=================================== */
+.add-patient-btn {
+  background: linear-gradient(90deg, #f48acb, #ff7dcc);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.2s ease-in-out;
+}
+.add-patient-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 14px rgba(255, 125, 204, 0.35);
+}
+
+.view-btn {
+  border: 1px solid #f48acb;
+  background: white;
+  color: #f48acb;
+  border-radius: 6px;
+  font-size: 14px;
+  padding: 4px 10px;
+  transition: 0.2s;
+}
+.view-btn:hover {
+  background: #f48acb;
+  color: white;
+}
+
+/* ================================
+   TABLE STYLING
+=================================== */
+.patients-table {
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+.patients-table tbody tr {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.patients-table tbody tr:hover {
+  transform: scale(1.01);
+  transition: 0.2s ease-in-out;
+}
+
+.patients-table th {
+  font-weight: 600;
+}
+
+/* ================================
+   BADGE STATUS COLORS
+=================================== */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Active */
+.status-active {
+  background: #ffe0f0;
+  color: #d63384;
+}
+
+/* On Hold */
+.status-on-hold {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+/* Completed */
+.status-completed {
+  background: #d1fae5;
+  color: #059669;
+}
+
+/* New Patient */
+.status-new-patient {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+/* Optional (in case DB uses Pending) */
+.status-pending {
+  background: #fff4e5;
+  color: #b9770e;
+}
+
+/* Optional (in case DB uses Success) */
+.status-success {
+  background: #d1fae5;
+  color: #059669;
+}
+
+/* ================================
+   PAGE BACKGROUND FIX
+=================================== */
+body {
+  background: linear-gradient(180deg, #fafafa, #ffffff);
+}
+
+.container-fluid {
+    margin-top: 20px;
+}
