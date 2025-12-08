@@ -1,82 +1,103 @@
-// ==========================
-// Patients Line Chart
-// ==========================
-const patientsCtx = document.getElementById("patientsChart");
+// Make sure Chart.js is loaded globally (usually in base.html)
+// This file uses data injected from Flask: monthlyData, outcomeData, ageData
 
-if (patientsCtx) {
-    new Chart(patientsCtx, {
-        type: "line",
-        data: {
-            labels: ["Nov", "Dec", "Jan", "Feb", "Mar", "Apr"],
-            datasets: [{
-                label: "Patients",
-                data: [120, 145, 160, 180, 190, 215],
-                borderWidth: 2,
-                fill: true,
-                borderColor: "rgba(255, 105, 180, 1)", // Pink
-                backgroundColor: "rgba(255, 105, 180, 0.15)", 
-                tension: 0.4,
-                pointRadius: 4
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-        }
-    });
-}
+document.addEventListener("DOMContentLoaded", function () {
 
+    // =========================
+    // 1. Monthly Patient Registrations (LINE CHART)
+    // =========================
+    const ctxPatients = document.getElementById('patientsChart');
 
-// ==========================
-// IVF Stages Bar Chart
-// ==========================
-const stagesCtx = document.getElementById("stagesChart");
+    if (ctxPatients && typeof Chart !== "undefined") {
+        const labels = monthlyData.length
+            ? monthlyData.map(p => p.label)
+            : ["No Data"];
 
-if (stagesCtx) {
-    new Chart(stagesCtx, {
-        type: "bar",
-        data: {
-            labels: ["Stimulation", "Fertilization", "Transfer", "Pregnancy Test"],
-            datasets: [{
-                label: "Count",
-                data: [80, 60, 50, 30],
-                backgroundColor: "rgba(173, 216, 230, 0.7)",   // Light Blue
-                borderColor: "rgba(173, 216, 230, 1)",
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-        }
-    });
-}
+        const values = monthlyData.length
+            ? monthlyData.map(p => p.value)
+            : [0];
 
-
-// ==========================
-// Age Distribution Doughnut Chart
-// ==========================
-const ageCtx = document.getElementById("ageChart");
-
-if (ageCtx) {
-    new Chart(ageCtx, {
-        type: "doughnut",
-        data: {
-            labels: ["Under 30", "30-34", "35-39", "40-44", "45+"],
-            datasets: [{
-                data: [20, 30, 25, 15, 10],
-                backgroundColor: [
-                    "#FFB3C1", "#FFDCA9", "#A7E9AF", "#A5D8FF", "#E0BBE4"
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: "bottom" }
+        new Chart(ctxPatients, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Patients',
+                    data: values,
+                    fill: true,
+                    tension: 0.4,
+                    borderColor: 'rgba(50, 150, 255, 1)',   // نفس الثيم القديم 💙
+                    backgroundColor: 'rgba(50, 150, 255, 0.15)'
+                }]
+            },
+            options: {
+                scales: {
+                    y: { min: 700 }  // يبدأ من 700 زي الصورة الأولى
+                }
             }
-        }
-    });
-}
+        });
+    }
+
+
+    // =========================
+    // 2. IVF Outcomes (PIE CHART)
+    // =========================
+    const ctxStages = document.getElementById('stagesChart');
+
+    if (ctxStages && typeof Chart !== "undefined") {
+        const labels = outcomeData.length
+            ? outcomeData.map(p => p.label)
+            : ["No Data"];
+
+        const values = outcomeData.length
+            ? outcomeData.map(p => p.value)
+            : [0];
+
+        new Chart(ctxStages, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: values
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+            }
+        });
+    }
+
+
+    // =========================
+    // 3. Patient Age Distribution (BAR CHART)
+    // =========================
+    const ctxAge = document.getElementById('ageChart');
+
+    if (ctxAge && typeof Chart !== "undefined") {
+        const labels = ageData.length ? ageData.map(p => p.label) : ["No Data"];
+        const values = ageData.length ? ageData.map(p => p.value) : [1];
+
+        new Chart(ctxAge, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Patients',
+                    data: values,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    }
+
+});

@@ -5,35 +5,36 @@
 <!-- Dashboard CSS -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 
-<!-- FontAwesome (Icons) -->
+<!-- FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <div class="container-fluid px-4 mt-3">
 
-    <!-- TITLE -->
     <h2 class="page-title mb-4">Dashboard Overview</h2>
 
-    <!-- ========== METRICS ========== -->
+    <!-- ===== METRICS ===== -->
     <div class="row g-3 mb-4">
-        {% macro metric_card(title, value, change, icon) %}
+        {% macro metric_card(title, value, subtitle, icon) %}
         <div class="col-md-3">
             <div class="metric-card p-3">
-                <div class="metric-title"><i class="{{ icon }}"></i> {{ title }}</div>
-                <div class="metric-value">{{ value }}</div>
-                <div class="metric-change {{ 'text-success' if '+' in change else 'text-danger' }}">
-                    {{ change }}
+                <div class="metric-title">
+                    <i class="{{ icon }}"></i> {{ title }}
                 </div>
+                <div class="metric-value">{{ value }}</div>
+                {% if subtitle %}
+                    <div class="metric-change text-muted small">{{ subtitle }}</div>
+                {% endif %}
             </div>
         </div>
         {% endmacro %}
 
-        {{ metric_card("Total Patients", "1,289", "+12.5%", "fa-solid fa-user-group") }}
-        {{ metric_card("Active IVF Cycles", "184", "-3.2%", "fa-solid fa-heart-pulse") }}
-        {{ metric_card("Upcoming Appointments", "42", "0%", "fa-solid fa-calendar-check") }}
-        {{ metric_card("Success Rate", "68.5%", "+1.8%", "fa-solid fa-chart-line") }}
+        {{ metric_card("Total Patients", total_patients, "", "fa-solid fa-user-group") }}
+        {{ metric_card("Active IVF Cycles", active_cycles, "", "fa-solid fa-heart-pulse") }}
+        {{ metric_card("Success Rate", success_rate ~ '%', "", "fa-solid fa-chart-line") }}
+        {{ metric_card("Upcoming Appointments", upcoming_appointments_text, "", "fa-solid fa-calendar-check") }}
     </div>
 
-    <!-- ========== CHARTS ========== -->
+    <!-- ===== CHARTS ===== -->
     <div class="row g-4 chart-row">
         <div class="col-md-7">
             <div class="chart-card p-3">
@@ -44,13 +45,13 @@
 
         <div class="col-md-5">
             <div class="chart-card p-3">
-                <h5 class="chart-title mb-3">IVF Cycle Stages</h5>
+                <h5 class="chart-title mb-3">IVF Cycle Outcomes</h5>
                 <canvas id="stagesChart"></canvas>
             </div>
         </div>
     </div>
 
-    <!-- ========== AGE DISTRIBUTION + QUICK INSIGHTS ========== -->
+    <!-- ===== AGE DISTRIBUTION ===== -->
     <div class="row g-4 chart-row mt-1">
         <div class="col-md-6">
             <div class="chart-card p-3">
@@ -63,14 +64,14 @@
             <div class="text-center">
                 <h4 class="mb-2">Quick Insights</h4>
                 <p class="text-muted">Discover personalized patient trends.</p>
-                <a href="/reports">
+                <a href="{{ url_for('reports') }}">
                     <button class="btn insights-btn">View All Analytics</button>
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- ========== RECENT ACTIVITY ========== -->
+    <!-- ===== RECENT ACTIVITY ===== -->
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="activity-card p-4">
@@ -88,7 +89,13 @@
 
 </div>
 
-<!-- DASHBOARD JS -->
-<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+<!-- ====== SAFE DATA TO JS (IMPORTANT) ====== -->
+<script>
 
+    const monthlyData  = JSON.parse(`{{ monthly_data | tojson | safe }}`);
+    const outcomeData  = JSON.parse(`{{ outcome_data | tojson | safe }}`);
+    const ageData      = JSON.parse(`{{ age_distribution | tojson | safe }}`);
+</script>
+
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 {% endblock %}

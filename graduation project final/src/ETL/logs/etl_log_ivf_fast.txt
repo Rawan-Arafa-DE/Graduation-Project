@@ -1,0 +1,26 @@
+2025-12-01 21:35:35,055 | INFO | ===== FAST ETL STARTED =====
+2025-12-01 21:35:36,873 | INFO | Schema (fresh) created successfully.
+2025-12-01 21:35:37,206 | INFO | Loaded 10000 raw rows.
+2025-12-01 21:35:37,406 | INFO | Start dim_female
+2025-12-01 21:35:37,535 | INFO | dim_female: unique natural keys = 10000
+2025-12-01 21:35:39,009 | INFO | dim_female: inserted 10000 new rows
+2025-12-01 21:35:39,015 | INFO | dim_female: mapping complete. unique=10000 elapsed=1.61s
+2025-12-01 21:35:39,017 | INFO | Start dim_male
+2025-12-01 21:35:39,111 | INFO | dim_male: unique natural keys = 10000
+2025-12-01 21:35:44,149 | INFO | dim_male: inserted 10000 new rows
+2025-12-01 21:35:44,153 | INFO | dim_male: mapping complete. unique=10000 elapsed=5.14s
+2025-12-01 21:35:44,158 | INFO | Start dim_protocol
+2025-12-01 21:35:44,270 | INFO | dim_protocol: unique natural keys = 9767
+2025-12-01 21:35:48,929 | INFO | dim_protocol: inserted 9767 new rows
+2025-12-01 21:35:48,931 | INFO | dim_protocol: mapping complete. unique=9767 elapsed=4.77s
+2025-12-01 21:35:48,934 | INFO | Start dim_outcome
+2025-12-01 21:35:49,018 | INFO | dim_outcome: unique natural keys = 1750
+2025-12-01 21:35:49,875 | INFO | dim_outcome: inserted 1750 new rows
+2025-12-01 21:35:49,877 | INFO | dim_outcome: mapping complete. unique=1750 elapsed=0.94s
+2025-12-01 21:35:49,878 | INFO | Start dim_embryo
+2025-12-01 21:35:49,961 | INFO | dim_embryo: unique natural keys = 28
+2025-12-01 21:35:49,984 | INFO | dim_embryo: inserted 28 new rows
+2025-12-01 21:35:49,986 | INFO | dim_embryo: mapping complete. unique=28 elapsed=0.11s
+2025-12-01 21:35:49,986 | INFO | Start dim_doctor
+2025-12-01 21:35:49,987 | INFO | skip dim_doctor (no cols present)
+2025-12-01 21:35:49,991 | INFO | dim_doctor: new 1, total mapped 1 elapsed=0.00s

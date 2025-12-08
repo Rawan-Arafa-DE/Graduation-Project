@@ -1679,3 +1679,389 @@ dtype: int64
 2025-11-26 05:55:34,009 | INFO | Table fact_transfer | Invalid outcome_id: 0
 2025-11-26 05:55:34,014 | INFO | Table fact_transfer | Invalid doctor_id: 0
 2025-11-26 05:55:34,015 | INFO | FINAL STATUS = -1
+2025-12-01 20:21:29,035 | INFO | Tables found:
+                    name
+0             dim_doctor
+1        sqlite_sequence
+2               dim_time
+3         fact_ivf_cycle
+4          fact_transfer
+5   fact_transfer_embryo
+6             dim_female
+7               dim_male
+8           dim_protocol
+9            dim_outcome
+10            dim_embryo
+2025-12-01 20:21:29,096 | INFO | Duplicates in dim_doctor: 0
+2025-12-01 20:21:29,099 | INFO | Duplicates in sqlite_sequence: 0
+2025-12-01 20:21:29,124 | INFO | Duplicates in dim_time: 0
+2025-12-01 20:21:29,200 | INFO | Duplicates in fact_ivf_cycle: 0
+2025-12-01 20:21:29,247 | INFO | Duplicates in fact_transfer: 0
+2025-12-01 20:21:29,265 | INFO | Duplicates in fact_transfer_embryo: 0
+2025-12-01 20:21:29,293 | INFO | Duplicates in dim_female: 0
+2025-12-01 20:21:29,323 | INFO | Duplicates in dim_male: 0
+2025-12-01 20:21:29,353 | INFO | Duplicates in dim_protocol: 0
+2025-12-01 20:21:29,359 | INFO | Duplicates in dim_outcome: 0
+2025-12-01 20:21:29,362 | INFO | Duplicates in dim_embryo: 0
+2025-12-01 20:21:29,365 | INFO | NULLS in dim_doctor:
+doctor_id      0
+doctor_name    0
+dtype: int64
+2025-12-01 20:21:29,367 | INFO | NULLS in sqlite_sequence:
+name    0
+seq     0
+dtype: int64
+2025-12-01 20:21:29,420 | INFO | NULLS in dim_time:
+time_id       0
+full_date     0
+day           0
+month         0
+month_name    0
+quarter       0
+year          0
+week          0
+dtype: int64
+2025-12-01 20:21:29,510 | INFO | NULLS in fact_ivf_cycle:
+cycle_sk                     0
+case_id                      0
+female_id                    0
+male_id                      0
+protocol_id              10000
+doctor_id                    0
+outcome_id               10000
+cycle_start_time_id          0
+e2_on_trigger                0
+endometrium_thickness        0
+follicles_18mm               0
+retrieved_oocytes            0
+m2_count                     0
+gv_count                     0
+injected_m2                  0
+fertilized_oocytes           0
+fertilization_rate           0
+cleavage_d3                  0
+blastocyst_d5                0
+good_embryos                 0
+dtype: int64
+2025-12-01 20:21:29,549 | INFO | NULLS in fact_transfer:
+transfer_sk                      0
+case_id                          0
+transfer_time_fk                 0
+doctor_id                        0
+embryos_transferred              0
+pregnancy_test_result            0
+clinical_pregnancy               0
+live_birth                       0
+outcome_id                   10000
+success_probability_score        0
+dtype: int64
+2025-12-01 20:21:29,576 | INFO | NULLS in fact_transfer_embryo:
+transfer_sk        0
+embryo_id      10000
+dtype: int64
+2025-12-01 20:21:29,599 | INFO | NULLS in dim_female:
+female_id     0
+female_age    0
+female_bmi    0
+amh_level     0
+fsh_level     0
+afc           0
+dtype: int64
+2025-12-01 20:21:29,621 | INFO | NULLS in dim_male:
+male_id                    0
+male_age                   0
+male_factor                0
+semen_count_mill_per_ml    0
+motility_percent           0
+morphology_percent         0
+dtype: int64
+2025-12-01 20:21:29,643 | INFO | NULLS in dim_protocol:
+protocol_id             9767
+protocol_type              0
+stimulation_days           0
+total_fsh_dose             0
+trigger_type               0
+recommended_protocol       0
+dtype: int64
+2025-12-01 20:21:29,648 | INFO | NULLS in dim_outcome:
+outcome_id                       1750
+risk_level                          0
+response_type                       0
+suggested_waiting_period_days       0
+failure_reason                    318
+dtype: int64
+2025-12-01 20:21:29,650 | INFO | NULLS in dim_embryo:
+embryo_id         28
+fresh_et_stage     0
+grading            0
+class_a_rate       0
+dtype: int64
+2025-12-01 20:21:29,656 | INFO | Invalid FK: fact_ivf_cycle → dim_time: 0
+2025-12-01 20:21:29,661 | INFO | Invalid FK: fact_transfer → dim_time: 0
+2025-12-01 20:21:29,663 | INFO | fact_transfer → dim_doctor: 0
+2025-12-01 20:21:29,665 | INFO | fact_transfer_embryo → fact_transfer: 0
+2025-12-01 20:21:29,666 | INFO | fact_transfer_embryo → dim_embryo: 0
+2025-12-01 20:21:29,669 | INFO | Table dim_doctor | Invalid doctor_id: 1
+2025-12-01 20:21:29,756 | INFO | Table fact_ivf_cycle | Invalid female_id: 10000
+2025-12-01 20:21:29,761 | INFO | Table fact_ivf_cycle | Invalid male_id: 10000
+2025-12-01 20:21:29,767 | INFO | Table fact_ivf_cycle | Invalid protocol_id: 10000
+2025-12-01 20:21:29,773 | INFO | Table fact_ivf_cycle | Invalid outcome_id: 10000
+2025-12-01 20:21:29,778 | INFO | Table fact_ivf_cycle | Invalid doctor_id: 10000
+2025-12-01 20:21:29,821 | INFO | Table fact_transfer | Invalid outcome_id: 10000
+2025-12-01 20:21:29,827 | INFO | Table fact_transfer | Invalid doctor_id: 10000
+2025-12-01 20:21:29,843 | INFO | Table fact_transfer_embryo | Invalid embryo_id: 10000
+2025-12-01 20:21:29,908 | INFO | Table dim_female | Invalid female_id: 10000
+2025-12-01 20:21:29,939 | INFO | Table dim_male | Invalid male_id: 10000
+2025-12-01 20:21:29,973 | INFO | Table dim_protocol | Invalid protocol_id: 9767
+2025-12-01 20:21:29,980 | INFO | Table dim_outcome | Invalid outcome_id: 1750
+2025-12-01 20:21:29,983 | INFO | Table dim_embryo | Invalid embryo_id: 28
+2025-12-01 20:21:29,983 | INFO | FINAL STATUS = -1
+2025-12-01 20:22:13,870 | INFO | Tables found:
+                    name
+0             dim_doctor
+1        sqlite_sequence
+2               dim_time
+3         fact_ivf_cycle
+4          fact_transfer
+5   fact_transfer_embryo
+6             dim_female
+7               dim_male
+8           dim_protocol
+9            dim_outcome
+10            dim_embryo
+2025-12-01 20:22:13,872 | INFO | Duplicates in dim_doctor: 0
+2025-12-01 20:22:13,873 | INFO | Duplicates in sqlite_sequence: 0
+2025-12-01 20:22:13,891 | INFO | Duplicates in dim_time: 0
+2025-12-01 20:22:14,014 | INFO | Duplicates in fact_ivf_cycle: 0
+2025-12-01 20:22:14,052 | INFO | Duplicates in fact_transfer: 0
+2025-12-01 20:22:14,062 | INFO | Duplicates in fact_transfer_embryo: 0
+2025-12-01 20:22:14,087 | INFO | Duplicates in dim_female: 0
+2025-12-01 20:22:14,110 | INFO | Duplicates in dim_male: 0
+2025-12-01 20:22:14,139 | INFO | Duplicates in dim_protocol: 0
+2025-12-01 20:22:14,145 | INFO | Duplicates in dim_outcome: 0
+2025-12-01 20:22:14,147 | INFO | Duplicates in dim_embryo: 0
+2025-12-01 20:22:14,149 | INFO | NULLS in dim_doctor:
+doctor_id      0
+doctor_name    0
+dtype: int64
+2025-12-01 20:22:14,152 | INFO | NULLS in sqlite_sequence:
+name    0
+seq     0
+dtype: int64
+2025-12-01 20:22:14,168 | INFO | NULLS in dim_time:
+time_id       0
+full_date     0
+day           0
+month         0
+month_name    0
+quarter       0
+year          0
+week          0
+dtype: int64
+2025-12-01 20:22:14,238 | INFO | NULLS in fact_ivf_cycle:
+cycle_sk                     0
+case_id                      0
+female_id                    0
+male_id                      0
+protocol_id              10000
+doctor_id                    0
+outcome_id               10000
+cycle_start_time_id          0
+e2_on_trigger                0
+endometrium_thickness        0
+follicles_18mm               0
+retrieved_oocytes            0
+m2_count                     0
+gv_count                     0
+injected_m2                  0
+fertilized_oocytes           0
+fertilization_rate           0
+cleavage_d3                  0
+blastocyst_d5                0
+good_embryos                 0
+dtype: int64
+2025-12-01 20:22:14,275 | INFO | NULLS in fact_transfer:
+transfer_sk                      0
+case_id                          0
+transfer_time_fk                 0
+doctor_id                        0
+embryos_transferred              0
+pregnancy_test_result            0
+clinical_pregnancy               0
+live_birth                       0
+outcome_id                   10000
+success_probability_score        0
+dtype: int64
+2025-12-01 20:22:14,286 | INFO | NULLS in fact_transfer_embryo:
+transfer_sk        0
+embryo_id      10000
+dtype: int64
+2025-12-01 20:22:14,309 | INFO | NULLS in dim_female:
+female_id     0
+female_age    0
+female_bmi    0
+amh_level     0
+fsh_level     0
+afc           0
+dtype: int64
+2025-12-01 20:22:14,331 | INFO | NULLS in dim_male:
+male_id                    0
+male_age                   0
+male_factor                0
+semen_count_mill_per_ml    0
+motility_percent           0
+morphology_percent         0
+dtype: int64
+2025-12-01 20:22:14,354 | INFO | NULLS in dim_protocol:
+protocol_id             9767
+protocol_type              0
+stimulation_days           0
+total_fsh_dose             0
+trigger_type               0
+recommended_protocol       0
+dtype: int64
+2025-12-01 20:22:14,359 | INFO | NULLS in dim_outcome:
+outcome_id                       1750
+risk_level                          0
+response_type                       0
+suggested_waiting_period_days       0
+failure_reason                    318
+dtype: int64
+2025-12-01 20:22:14,360 | INFO | NULLS in dim_embryo:
+embryo_id         28
+fresh_et_stage     0
+grading            0
+class_a_rate       0
+dtype: int64
+2025-12-01 20:22:14,367 | INFO | fact_ivf_cycle → dim_time: 0
+2025-12-01 20:22:14,371 | INFO | fact_transfer → dim_time: 0
+2025-12-01 20:22:14,373 | INFO | fact_transfer → dim_doctor: 0
+2025-12-01 20:22:14,374 | INFO | fact_transfer_embryo → fact_transfer: 0
+2025-12-01 20:22:14,375 | INFO | fact_transfer_embryo → dim_embryo: 0
+2025-12-01 20:22:14,375 | INFO | ID regex checks skipped (new ID logic).
+2025-12-01 20:22:14,376 | INFO | FINAL STATUS = -1
+2025-12-01 20:27:42,048 | INFO | Tables found:
+                    name
+0             dim_doctor
+1        sqlite_sequence
+2               dim_time
+3         fact_ivf_cycle
+4          fact_transfer
+5   fact_transfer_embryo
+6             dim_female
+7               dim_male
+8           dim_protocol
+9            dim_outcome
+10            dim_embryo
+2025-12-01 20:27:42,049 | INFO | Duplicates in dim_doctor: 0
+2025-12-01 20:27:42,050 | INFO | Duplicates in sqlite_sequence: 0
+2025-12-01 20:27:42,137 | INFO | Duplicates in dim_time: 0
+2025-12-01 20:27:42,323 | INFO | Duplicates in fact_ivf_cycle: 0
+2025-12-01 20:27:42,397 | INFO | Duplicates in fact_transfer: 0
+2025-12-01 20:27:42,480 | INFO | Duplicates in fact_transfer_embryo: 0
+2025-12-01 20:27:42,580 | INFO | Duplicates in dim_female: 0
+2025-12-01 20:27:42,669 | INFO | Duplicates in dim_male: 0
+2025-12-01 20:27:42,820 | INFO | Duplicates in dim_protocol: 0
+2025-12-01 20:27:42,831 | INFO | Duplicates in dim_outcome: 0
+2025-12-01 20:27:42,833 | INFO | Duplicates in dim_embryo: 0
+2025-12-01 20:27:42,836 | INFO | NULLS in dim_doctor:
+doctor_id      0
+doctor_name    0
+dtype: int64
+2025-12-01 20:27:42,838 | INFO | NULLS in sqlite_sequence:
+name    0
+seq     0
+dtype: int64
+2025-12-01 20:27:42,863 | INFO | NULLS in dim_time:
+time_id       0
+full_date     0
+day           0
+month         0
+month_name    0
+quarter       0
+year          0
+week          0
+dtype: int64
+2025-12-01 20:27:42,964 | INFO | NULLS in fact_ivf_cycle:
+cycle_sk                     0
+case_id                      0
+female_id                    0
+male_id                      0
+protocol_id              10000
+doctor_id                    0
+outcome_id               10000
+cycle_start_time_id          0
+e2_on_trigger                0
+endometrium_thickness        0
+follicles_18mm               0
+retrieved_oocytes            0
+m2_count                     0
+gv_count                     0
+injected_m2                  0
+fertilized_oocytes           0
+fertilization_rate           0
+cleavage_d3                  0
+blastocyst_d5                0
+good_embryos                 0
+dtype: int64
+2025-12-01 20:27:43,005 | INFO | NULLS in fact_transfer:
+transfer_sk                      0
+case_id                          0
+transfer_time_fk                 0
+doctor_id                        0
+embryos_transferred              0
+pregnancy_test_result            0
+clinical_pregnancy               0
+live_birth                       0
+outcome_id                   10000
+success_probability_score        0
+dtype: int64
+2025-12-01 20:27:43,018 | INFO | NULLS in fact_transfer_embryo:
+transfer_sk        0
+embryo_id      10000
+dtype: int64
+2025-12-01 20:27:43,049 | INFO | NULLS in dim_female:
+female_id     0
+female_age    0
+female_bmi    0
+amh_level     0
+fsh_level     0
+afc           0
+dtype: int64
+2025-12-01 20:27:43,078 | INFO | NULLS in dim_male:
+male_id                    0
+male_age                   0
+male_factor                0
+semen_count_mill_per_ml    0
+motility_percent           0
+morphology_percent         0
+dtype: int64
+2025-12-01 20:27:43,108 | INFO | NULLS in dim_protocol:
+protocol_id             9767
+protocol_type              0
+stimulation_days           0
+total_fsh_dose             0
+trigger_type               0
+recommended_protocol       0
+dtype: int64
+2025-12-01 20:27:43,115 | INFO | NULLS in dim_outcome:
+outcome_id                       1750
+risk_level                          0
+response_type                       0
+suggested_waiting_period_days       0
+failure_reason                    318
+dtype: int64
+2025-12-01 20:27:43,117 | INFO | NULLS in dim_embryo:
+embryo_id         28
+fresh_et_stage     0
+grading            0
+class_a_rate       0
+dtype: int64
+2025-12-01 20:27:43,123 | INFO | fact_ivf_cycle → dim_time: 0
+2025-12-01 20:27:43,128 | INFO | fact_transfer → dim_time: 0
+2025-12-01 20:27:43,132 | INFO | fact_transfer → dim_doctor: 0
+2025-12-01 20:27:43,154 | INFO | fact_transfer_embryo → fact_transfer: 0
+2025-12-01 20:27:43,156 | INFO | fact_transfer_embryo → dim_embryo: 0
+2025-12-01 20:27:43,156 | INFO | ID regex checks skipped.
+2025-12-01 20:27:43,875 | INFO | Excel summary saved at: E:\work\DEPI\graduation promax\src\ETL\logs\validation_summary.xlsx
+2025-12-01 20:27:43,875 | INFO | FINAL STATUS = 1

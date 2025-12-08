@@ -1,0 +1,57 @@
+{
+    "female_id": "",
+    "case_id": "",
+    "doctor_id": "",
+    "male_id": "",
+
+    "female_age": 0,
+    "female_bmi": 0.0,
+    "amh_level": 0.0,
+    "fsh_level": 0.0,
+    "afc": 0,
+
+    "male_age": 0,
+    "male_factor": "",
+    "semen_count_mill_per_ml": 0.0,
+    "motility_percent": 0.0,
+    "morphology_percent": 0.0,
+
+    "protocol_id": "P001",
+    "protocol_type": "Antagonist",
+    "stimulation_days": 10,
+    "total_fsh_dose": 2250,
+    "trigger_type": "hCG",
+
+    "outcome_id": "",
+    "risk_level": "",
+    "response_type": "",
+    "failure_reason": "",
+    "suggested_waiting_period_days": 0,
+
+    "e2_on_trigger": 0.0,
+    "endometrium_thickness": 0.0,
+    "follicles_18mm": 0,
+    "retrieved_oocytes": 0,
+    "m2_count": 0,
+    "gv_count": 0,
+    "injected_mii": 0,
+    "fertilized_oocytes": 0,
+    "cleavage_d3": 0,
+    "blastocyst_d5": 0,
+    "good_embryos": 0,
+
+    "cycle_id": "",
+    "embryos_transferred": 0,
+    "pregnancy_test_result": "",
+    "clinical_pregnancy": "",
+    "live_birth": "",
+    "success_probability_score": 0.0,
+
+    "embryo_id": "",
+    "fresh_et_stage": "",
+    "grading": "",
+    "class_a_rate": 0.0,
+
+    "et_date": "",
+    "saved_at": ""
+}

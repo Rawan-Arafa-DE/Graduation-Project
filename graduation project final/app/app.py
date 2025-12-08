@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template,  request, redirect, url_for
+from flask import Flask, render_template,  request, redirect, url_for, jsonify
 from datetime import datetime
 import json
 import sqlite3
@@ -36,9 +36,81 @@ app = Flask(__name__,
 def home():
     return render_template('index.html')   # Login
 
+from flask import render_template
+import sqlite3
+
 @app.route('/dashboard')
 def dashboard():
-    return render_template('dashboard.html')  # Dashboard
+    conn = sqlite3.connect(WAREHOUSE_DB)
+    cur = conn.cursor()
+
+    # ---------- 1. TOP METRICS ----------
+    cur.execute("SELECT COUNT(DISTINCT female_id) FROM fact_ivf_cycle;")
+    total_patients = cur.fetchone()[0] or 0
+
+    cur.execute("SELECT COUNT(*) FROM fact_ivf_cycle;")
+    active_cycles = cur.fetchone()[0] or 0
+
+    cur.execute("""
+        SELECT 
+            SUM(CASE WHEN live_birth = 1 THEN 1 ELSE 0 END) AS live_births,
+            COUNT(*) AS total_transfers
+        FROM fact_transfer;
+    """)
+    live_births, total_transfers = cur.fetchone()
+    success_rate = round((live_births / total_transfers) * 100, 1) if total_transfers else 0
+
+    upcoming_appointments_text = "Coming Soon"
+
+    # ---------- 2. MONTHLY DATA ----------
+    cur.execute("""
+        SELECT 
+            strftime('%Y-%m', dt.full_date) AS month,
+            COUNT(DISTINCT f.female_id) AS cnt
+        FROM fact_ivf_cycle f
+        JOIN dim_time dt ON f.cycle_start_time_id = dt.time_id
+        GROUP BY month
+        ORDER BY month
+        LIMIT 6;
+    """)
+    monthly_data = [{"label": r[0], "value": r[1]} for r in cur.fetchall()]
+
+    # ---------- 3. OUTCOME DATA ----------
+    cur.execute("""
+        SELECT o.risk_level, COUNT(*) 
+        FROM fact_ivf_cycle f
+        JOIN dim_outcome o ON f.outcome_id = o.outcome_id
+        GROUP BY o.risk_level;
+    """)
+    outcome_data = [{"label": r[0] or "Unknown", "value": r[1]} for r in cur.fetchall()]
+
+    # ---------- 4. AGE DATA ----------
+    cur.execute("SELECT female_age FROM dim_female WHERE female_age IS NOT NULL;")
+    buckets = {"<30": 0, "30–34": 0, "35–39": 0, "40–44": 0, "45+": 0}
+
+    for age in [r[0] for r in cur.fetchall()]:
+        if age < 30: buckets["<30"] += 1
+        elif age < 35: buckets["30–34"] += 1
+        elif age < 40: buckets["35–39"] += 1
+        elif age < 45: buckets["40–44"] += 1
+        else: buckets["45+"] += 1
+
+    age_distribution = [{"label": k, "value": v} for k, v in buckets.items()]
+
+    conn.close()
+
+    return render_template(
+        "dashboard.html",
+        total_patients=total_patients,
+        active_cycles=active_cycles,
+        success_rate=success_rate,
+        upcoming_appointments_text=upcoming_appointments_text,
+        monthly_data=monthly_data,
+        outcome_data=outcome_data,
+        age_distribution=age_distribution
+    )
+
+
 
 @app.route('/patients')
 def patients():
@@ -51,7 +123,7 @@ def patients():
         SELECT
             f.female_id AS patient_id
         FROM dim_female f
-        LIMIT 5;     -- 👈 ONLY SHOW 5 PATIENTS
+        LIMIT 5;     -- ONLY SHOW 5 PATIENTS
     """)
     rows = cursor.fetchall()
     conn.close()
@@ -74,7 +146,7 @@ def ivf_cycles():
 
 @app.route('/reports')
 def reports():
-    return render_template('reports.html')
+    return redirect("https://app.powerbi.com/view?r=eyJrIjoiNzk5NDFkMzktNjY2ZC00NDEzLWIwYjAtZjk2OWNlODY2NDNiIiwidCI6ImVhZjYyNGM4LWEwYzQtNDE5NS04N2QyLTQ0M2U1ZDc1MTZjZCIsImMiOjh9")
 
 @app.route('/settings')
 def settings():

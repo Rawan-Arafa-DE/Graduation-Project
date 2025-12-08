@@ -44,10 +44,12 @@ CREATE TABLE dim_protocol (
     UNIQUE (protocol_type, stimulation_days, total_fsh_dose, trigger_type, recommended_protocol)
 );
 
+-- UPDATED: doctor_id INTEGER AUTOINCREMENT
 CREATE TABLE dim_doctor (
-    doctor_id TEXT PRIMARY KEY,
+    doctor_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    doctor_name TEXT,
     doctor_recommendation TEXT,
-    UNIQUE (doctor_recommendation)
+    UNIQUE(doctor_name, doctor_recommendation)
 );
 
 CREATE TABLE dim_outcome (
@@ -88,7 +90,7 @@ CREATE TABLE fact_ivf_cycle (
     female_id TEXT,
     male_id TEXT,
     protocol_id TEXT,
-    doctor_id TEXT,
+    doctor_id INTEGER,              
     outcome_id TEXT,
     cycle_start_time_id INTEGER,
 
@@ -118,7 +120,7 @@ CREATE TABLE fact_transfer (
     transfer_sk INTEGER PRIMARY KEY AUTOINCREMENT,
     case_id TEXT,
     transfer_time_fk INTEGER,
-    doctor_id TEXT,
+    doctor_id INTEGER,               -- UPDATED
     embryos_transferred INTEGER,
     pregnancy_test_result TEXT,
     clinical_pregnancy INTEGER,
@@ -136,7 +138,7 @@ CREATE TABLE fact_transfer_embryo (
     embryo_id TEXT,
 
     FOREIGN KEY (transfer_sk) REFERENCES fact_transfer(transfer_sk),
-    FOREIGN KEY (embryo_id) REFERENCES dim_embryo(embryo_id)
-    PRIMARY KEY (transfer_sk, embryo_id)
+    FOREIGN KEY (embryo_id) REFERENCES dim_embryo(embryo_id),
 
+    PRIMARY KEY (transfer_sk, embryo_id)
 );
